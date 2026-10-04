@@ -1,0 +1,4 @@
+bronze/*.csv
+silver/*.csv
+__pycache__/
+reports/
