@@ -1,6 +1,6 @@
 # QRIS Streaming Lakehouse — Real time Fraud Analytics
 
-QRIS is Indonesia's national instant payment rail (think UPI in India, Pix in Brazil).
+QRIS is Indonesia's national instant payment rail.
 Simulated QRIS payment stream → bronze/silver/gold lakehouse → fraud marts + dashboard.
 Built to be reproducible: one seed regenerates everything.
 
