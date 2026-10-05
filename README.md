@@ -1,11 +1,12 @@
-# QRIS Streaming Lakehouse — Real-time Fraud Analytics
+# QRIS Streaming Lakehouse — Real time Fraud Analytics
 
+QRIS is Indonesia's national instant payment rail (think UPI in India, Pix in Brazil).
 Simulated QRIS payment stream → bronze/silver/gold lakehouse → fraud marts + dashboard.
 Built to be reproducible: one seed regenerates everything.
 
 ## Problem
 QRIS money moves fast — fraud must be caught fast. This pipeline answers:
-which merchants leak fraud volume, what fraud types trend daily, which users are high-risk.
+which merchants leak fraud volume, what fraud types trend daily, which users are high risk.
 
 ## Architecture (simulated stream + batch)
 ```
@@ -17,7 +18,7 @@ generator/gen_qris.py (seed=42, 100k txns, 2% fraud, 4 types)
   -> load_to_bq.py                  # BigQuery dataset qris_analytics
   -> Looker dashboard (3 tiles)
 ```
-## Real-time (Kafka lokal, Docker)
+## Real time (Kafka lokal, Docker)
 ```
 docker compose -f docker-compose.kafka.yml up -d   # broker KRaft + topik qris-txns (3 partisi)
 python pipeline/produce.py    # kirim 100K event
@@ -29,7 +30,7 @@ Roadmap: Spark Structured Streaming + deploy cloud.
 ## Results
 - 100,000 txns, 1.95% fraud (velocity / night / round_amount / new_device)
 - 0 duplicates, 0 corrupt rows after quality gates
-- 39 high-risk users (score >= 8)
+- 39 high risk users (score >= 8)
 
 ```
 python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast (1 perintah)
