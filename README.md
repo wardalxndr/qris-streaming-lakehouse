@@ -5,27 +5,27 @@ Simulated QRIS payment stream → bronze/silver/gold lakehouse → fraud marts +
 Built to be reproducible: one seed regenerates everything.
 
 ## Problem
-QRIS money moves fast — fraud must be caught fast. This pipeline answers:
+QRIS money moves fast, so fraud must be caught fast. This pipeline answers:
 which merchants leak fraud volume, what fraud types trend daily, which users are high risk.
 
 ## Architecture (simulated stream + batch)
 ```
-generator/gen_qris.py (seed=42, 100k txns, 2% fraud, 4 types)
-  -> bronze/qris_raw.csv            # raw stream landing
-  -> silver/clean.py                # dedup, validate, velocity window flags
-  -> silver/qris_clean.csv
-  -> gold/marts.py                  # mart_merchant_volume, mart_fraud_flags, mart_user_risk
-  -> load_to_bq.py                  # BigQuery dataset qris_analytics
+pipeline/gen_qris.py (seed=42, 100k txns, 2% fraud, 4 types)
+  -> data/bronze/qris_raw.csv       # raw stream landing
+  -> pipeline/clean_silver.py       # dedup, validate, velocity window flags
+  -> data/qris_clean.csv
+  -> pipeline/build_gold.py         # mart_merchant_volume, mart_fraud_flags, mart_user_risk
+  -> pipeline/load_to_bq.py         # BigQuery dataset qris_analytics
   -> Looker dashboard (3 tiles)
 ```
-## Real time (Kafka lokal, Docker)
+## Real time (local Kafka, Docker)
 ```
-docker compose -f docker-compose.kafka.yml up -d   # broker KRaft + topik qris-txns (3 partisi)
-python pipeline/produce.py    # kirim 100K event
-python pipeline/consume.py    # bersihin live -> data/qris_clean_live.csv
+docker compose -f docker-compose.kafka.yml up -d   # KRaft broker + qris-txns topic (3 partitions)
+python pipeline/produce.py    # send 100K events
+python pipeline/consume.py    # clean live -> data/qris_clean_live.csv
 ```
-Terbukti: consumer mati saat produce → catch-up 100.000/100.000, 0 duplikat, 0 hilang.
-Roadmap: Spark Structured Streaming + deploy cloud.
+Proven: consumer down during produce → caught up 100,000/100,000, 0 duplicates, 0 lost.
+Roadmap: Spark Structured Streaming + cloud deploy.
 
 ## Results
 - 100,000 txns, 1.95% fraud (velocity / night / round_amount / new_device)
@@ -33,24 +33,24 @@ Roadmap: Spark Structured Streaming + deploy cloud.
 - 39 high risk users (score >= 8)
 
 ```
-python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast (1 perintah)
-python pipeline/load_to_bq.py   # BigQuery dataset qris_analytics (butuh service-account JSON)
+python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast (one command)
+python pipeline/load_to_bq.py   # BigQuery dataset qris_analytics (needs service-account JSON)
 ```
-Struktur ala lakehouse (mirip proyek retail Walmart, upgrade ke QRIS):
-`pipeline/` runnable lokal, `spark/` referensi Spark Structured Streaming,
-`dags/` contoh Airflow harian, `sql/` query analitik, `data/` output, `reports/` metrik.
+Lakehouse layout (same pattern as a retail Walmart project, upgraded to QRIS):
+`pipeline/` runs locally, `spark/` is a Spark Structured Streaming reference,
+`dags/` a daily Airflow example, `sql/` analytics queries, `data/` outputs, `reports/` metrics.
 
 ## Machine learning
-`pipeline/model.py` melatih LogisticRegression (probabilitas fraud per transaksi,
-split waktu: 3 minggu latih, 1 minggu uji). Metrik jujur di `reports/model_metrics.json`
-(precision/recall/F1 + ambang terpilih). Aturan tetap dipakai bareng model:
-aturan tangkap pola jelas (velocity butuh histori, model 1 baris nggak bisa lihat itu),
-model kasih probabilitas yang ambangnya bisa digeser sesuai selera risiko.
+`pipeline/model.py` trains a LogisticRegression (fraud probability per transaction,
+time split: 3 weeks train, 1 week test). Honest metrics in `reports/model_metrics.json`
+(precision/recall/F1 + chosen threshold). Rules stay alongside the model:
+rules catch clear patterns (velocity needs history, a single-row model cannot see that),
+the model gives a probability whose threshold shifts with risk appetite.
 
 ## Forecast
-`pipeline/forecast.py` meramal fraud harian 7 hari ke depan (rata-rata 7 hari x faktor
-weekday x boost gajian, ala fitur holiday Walmart). Backtest 7 hari: MAE ~81 vs rata-rata
-~136/hari — model naive v1, jujur dicatat di `reports/forecast_metrics.json`.
+`pipeline/forecast.py` forecasts daily fraud 7 days ahead (7-day average x weekday
+factor x payday boost, like Walmart holiday features). 7-day backtest: MAE ~81 vs
+~136/day average — naive v1 model, honestly recorded in `reports/forecast_metrics.json`.
 
 ## Source
 Synthetic data (own generator). Fraud patterns modeled on common e-wallet typologies.
