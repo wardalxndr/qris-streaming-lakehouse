@@ -20,7 +20,7 @@ def main():
     seen, dups = set(), 0
     bad_amount, bad_ts = 0, 0
     rows = []
-    with open("bronze/qris_raw.csv", newline="") as f:
+    with open("data/bronze/qris_raw.csv", newline="") as f:
         for r in csv.DictReader(f):
             if r["txn_id"] in seen:  # buang duplikat
                 dups += 1
@@ -58,7 +58,7 @@ def main():
 
     cols = ["txn_id", "ts", "user_id", "merchant_id", "merchant_cat", "amount",
             "city", "device_id", "channel", "is_fraud", "fraud_type"]
-    with open("silver/qris_clean.csv", "w", newline="") as f:
+    with open("data/qris_clean.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
         for r in rows:

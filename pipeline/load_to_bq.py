@@ -13,7 +13,7 @@ bq.query(f"CREATE SCHEMA IF NOT EXISTS `{PROJECT}.{DATASET}` OPTIONS(location='U
 
 job_cfg = bigquery.LoadJobConfig(source_format="CSV", skip_leading_rows=1,
                                  autodetect=True, write_disposition="WRITE_TRUNCATE")
-for path in sorted(glob.glob("gold/mart_*.csv")):
+for path in sorted(glob.glob("data/mart_*.csv")):
     table = f"{PROJECT}.{DATASET}.{os.path.splitext(os.path.basename(path))[0]}"
     with open(path, "rb") as f:
         bq.load_table_from_file(f, table, job_config=job_cfg).result()

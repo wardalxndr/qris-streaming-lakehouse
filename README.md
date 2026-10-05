@@ -24,13 +24,18 @@ Roadmap: replace file landing with Kafka + Spark Structured Streaming (same sche
 - 0 duplicates, 0 corrupt rows after quality gates
 - 39 high-risk users (score >= 8)
 
-## How to run
 ```
-python generator/gen_qris.py
-python silver/clean.py
-python gold/marts.py
-python load_to_bq.py   # needs service-account JSON, see Epoch project
+python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast (1 perintah)
+python pipeline/load_to_bq.py   # BigQuery dataset qris_analytics (butuh service-account JSON)
 ```
+Struktur ala lakehouse (mirip proyek retail Walmart, upgrade ke QRIS):
+`pipeline/` runnable lokal, `spark/` referensi Spark Structured Streaming,
+`dags/` contoh Airflow harian, `sql/` query analitik, `data/` output, `reports/` metrik.
+
+## Forecast
+`pipeline/forecast.py` meramal fraud harian 7 hari ke depan (rata-rata 7 hari x faktor
+weekday x boost gajian, ala fitur holiday Walmart). Backtest 7 hari: MAE ~81 vs rata-rata
+~136/hari — model naive v1, jujur dicatat di `reports/forecast_metrics.json`.
 
 ## Source
 Synthetic data (own generator). Fraud patterns modeled on common e-wallet typologies.

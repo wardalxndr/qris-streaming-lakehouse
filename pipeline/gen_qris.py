@@ -40,7 +40,7 @@ def main():
     cols = ["txn_id", "ts", "user_id", "merchant_id", "merchant_cat", "amount",
             "city", "device_id", "channel", "is_fraud", "fraud_type"]
     n_fraud = 0
-    with open("bronze/qris_raw.csv", "w", newline="") as f:
+    with open("data/bronze/qris_raw.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(cols)
         for _ in range(N):

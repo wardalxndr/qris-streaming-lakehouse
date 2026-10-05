@@ -6,7 +6,7 @@ RISK_W = {"velocity": 4, "velocity_detected": 4, "night": 3, "round_amount": 2, 
 
 
 def main():
-    rows = list(csv.DictReader(open("silver/qris_clean.csv")))
+    rows = list(csv.DictReader(open("data/qris_clean.csv")))
     for r in rows:
         r["amount"] = int(r["amount"])
         r["day"] = r["ts"][:10]
@@ -17,7 +17,7 @@ def main():
         k = (r["merchant_id"], r["merchant_cat"], r["city"], r["day"])
         vol[k][0] += 1
         vol[k][1] += r["amount"]
-    with open("gold/mart_merchant_volume.csv", "w", newline="") as f:
+    with open("data/mart_merchant_volume.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["merchant_id", "merchant_cat", "city", "day", "txn_count", "total_amount"])
         for (mid, cat, city, day), (c, s) in sorted(vol.items()):
@@ -28,7 +28,7 @@ def main():
     for r in rows:
         if str(r["is_fraud"]) == "1":
             fr[(r["day"], r["fraud_type"])] += 1
-    with open("gold/mart_fraud_flags.csv", "w", newline="") as f:
+    with open("data/mart_fraud_flags.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["day", "fraud_type", "count"])
         for (day, t), c in sorted(fr.items()):
@@ -39,7 +39,7 @@ def main():
     for r in rows:
         if str(r["is_fraud"]) == "1":
             score[r["user_id"]] += RISK_W.get(r["fraud_type"], 1)
-    with open("gold/mart_user_risk.csv", "w", newline="") as f:
+    with open("data/mart_user_risk.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["user_id", "risk_score", "risk_band"])
         for u, s in sorted(score.items(), key=lambda x: -x[1]):
