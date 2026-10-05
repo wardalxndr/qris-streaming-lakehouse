@@ -17,7 +17,14 @@ generator/gen_qris.py (seed=42, 100k txns, 2% fraud, 4 types)
   -> load_to_bq.py                  # BigQuery dataset qris_analytics
   -> Looker dashboard (3 tiles)
 ```
-Roadmap: replace file landing with Kafka + Spark Structured Streaming (same schema, same marts).
+## Real-time (Kafka lokal, Docker)
+```
+docker compose -f docker-compose.kafka.yml up -d   # broker KRaft + topik qris-txns (3 partisi)
+python pipeline/produce.py    # kirim 100K event
+python pipeline/consume.py    # bersihin live -> data/qris_clean_live.csv
+```
+Terbukti: consumer mati saat produce → catch-up 100.000/100.000, 0 duplikat, 0 hilang.
+Roadmap: Spark Structured Streaming + deploy cloud.
 
 ## Results
 - 100,000 txns, 1.95% fraud (velocity / night / round_amount / new_device)
