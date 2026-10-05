@@ -40,6 +40,13 @@ Struktur ala lakehouse (mirip proyek retail Walmart, upgrade ke QRIS):
 `pipeline/` runnable lokal, `spark/` referensi Spark Structured Streaming,
 `dags/` contoh Airflow harian, `sql/` query analitik, `data/` output, `reports/` metrik.
 
+## Machine learning
+`pipeline/model.py` melatih LogisticRegression (probabilitas fraud per transaksi,
+split waktu: 3 minggu latih, 1 minggu uji). Metrik jujur di `reports/model_metrics.json`
+(precision/recall/F1 + ambang terpilih). Aturan tetap dipakai bareng model:
+aturan tangkap pola jelas (velocity butuh histori, model 1 baris nggak bisa lihat itu),
+model kasih probabilitas yang ambangnya bisa digeser sesuai selera risiko.
+
 ## Forecast
 `pipeline/forecast.py` meramal fraud harian 7 hari ke depan (rata-rata 7 hari x faktor
 weekday x boost gajian, ala fitur holiday Walmart). Backtest 7 hari: MAE ~81 vs rata-rata

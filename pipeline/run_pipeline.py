@@ -6,6 +6,7 @@ STEPS = [
     [sys.executable, "pipeline/clean_silver.py"],
     [sys.executable, "pipeline/build_gold.py"],
     [sys.executable, "pipeline/forecast.py"],
+    [sys.executable, "pipeline/model.py"],
 ]
 
 for cmd in STEPS:
