@@ -12,4 +12,7 @@ with DAG("qris_lakehouse",
     clean = BashOperator(task_id="silver", bash_command="python pipeline/clean_silver.py")
     gold = BashOperator(task_id="gold", bash_command="python pipeline/build_gold.py")
     forecast = BashOperator(task_id="forecast", bash_command="python pipeline/forecast.py")
-    gen >> clean >> gold >> forecast
+    score = BashOperator(task_id="score", bash_command="python pipeline/score.py")
+    reconcile = BashOperator(task_id="reconcile", bash_command="python pipeline/reconcile.py")
+    retrain = BashOperator(task_id="retrain", bash_command="python pipeline/retrain.py")
+    gen >> clean >> gold >> forecast >> score >> reconcile >> retrain

@@ -47,6 +47,16 @@ time split: 3 weeks train, 1 week test). Honest metrics in `reports/model_metric
 rules catch clear patterns (velocity needs history, a single-row model cannot see that),
 the model gives a probability whose threshold shifts with risk appetite.
 
+## Retraining loop (living model, not one-shot)
+Fraud shifts, so the model must be re-measured and re-challenged on a schedule:
+1. `pipeline/score.py` scores silver with the champion model, stamping model_version per row.
+2. `pipeline/reconcile.py` replays delayed labels (default 2 days, like production where labels arrive late) and reports precision/recall/F1 + drift flags to `reports/reconcile_metrics.json`. Always exits 0: monitoring, not a gate.
+3. `pipeline/retrain.py` trains a challenger on the newest 21-day window, tests on the newest week, and promotes only if F1 beats champion by >= 0.005. Old models are never deleted; `reports/model_registry.json` is the source of truth. First run here: challenger tied champion, correctly NOT promoted.
+```
+python pipeline/run_retrain.py   # score -> reconcile -> retrain
+```
+The Airflow DAG chains the same three tasks after forecast. Honest scope: labels are simulated with delay; the mechanics (versioning, gate, registry) are production patterns.
+
 ## Forecast
 `pipeline/forecast.py` forecasts daily fraud 7 days ahead (7-day average x weekday
 factor x payday boost, like Walmart holiday features). 7-day backtest: MAE ~81 vs
