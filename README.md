@@ -31,7 +31,7 @@ Roadmap: Spark Structured Streaming + cloud deploy.
 
 ```mermaid
 flowchart LR
-    subgraph ERP["ERP (contoh: ScaleOcean)"]
+    subgraph ERP["ERP (sistem kasir retail)"]
         POS["Kasir / POS"] --> GUD["Stok & Kas"]
         GUD --> AKT["AR/AP & Akuntansi"]
         AKT --> LAP["Laporan"]
