@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: qris
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: qris_analytics
+    tables:
+      - name: silver_transactions
+        description: Silver hasil clean_silver.py, dimuat pipeline/load_to_bq.py.
+        columns:
+          - name: txn_id
+            tests:
+              - not_null

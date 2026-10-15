@@ -1,0 +1,13 @@
+# Copy ke ~/.dbt/profiles.yml (atau set PROFILE_DIR) terus isi yang kosong.
+# Butuh adapter: pip install dbt-bigquery
+# Jangan commit key JSON ke mana pun.
+qris_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      dataset: qris_analytics
+      location: US
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"

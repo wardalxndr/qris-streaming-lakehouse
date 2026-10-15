@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: stg_qris
+    description: Silver parse-typed, satu baris per transaksi bersih.
+    columns:
+      - name: txn_id
+        tests:
+          - not_null
+          - unique
+  - name: mart_merchant_volume
+    description: Volume per merchant per hari, partition day + cluster merchant.
+    columns:
+      - name: merchant_id
+        tests:
+          - not_null
+      - name: merchant_cat
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
+      - name: day
+        tests:
+          - not_null
+      - name: txn_count
+        tests:
+          - not_null
+      - name: total_amount
+        tests:
+          - not_null
+  - name: mart_fraud_flags
+    description: Fraud per tipe per hari, partition day + cluster tipe.
+    columns:
+      - name: day
+        tests:
+          - not_null
+      - name: fraud_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['velocity', 'velocity_detected', 'night', 'round_amount', 'new_device']
+      - name: count
+        tests:
+          - not_null
+  - name: mart_user_risk
+    description: Skor risiko per user, cluster user (snapshot, tanpa partition).
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: risk_score
+        tests:
+          - not_null
+      - name: risk_band
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['high', 'medium', 'low']

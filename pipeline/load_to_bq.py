@@ -1,20 +1,50 @@
-"""Load 3 mart gold ke BigQuery (dataset qris_analytics)."""
+"""Load silver CSV ke BigQuery (dataset qris_analytics, tabel silver_transactions).
+
+Creds 100% env, tanpa hardcode:
+  set GCP_PROJECT_ID=epoch-ai-data-center
+  set GOOGLE_APPLICATION_CREDENTIALS=C:\\path\\key.json
+Jalankan dari root repo:  python pipeline/load_to_bq.py
+
+Mart gold DIBANGUN dbt (qris_analytics/models), bukan script ini.
+Versi lama file ini yang load mart CSV langsung sudah pensiun.
+"""
+import os
+
 from google.cloud import bigquery
-from google.oauth2 import service_account
-import glob, os
 
-KEY = r"C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\01-docker-terraform\epoch-ai-data-center-04c3c8ec7e85.json"
-PROJECT = "epoch-ai-data-center"
+PROJECT = os.environ["GCP_PROJECT_ID"]
 DATASET = "qris_analytics"
+TABLE = "silver_transactions"
 
-creds = service_account.Credentials.from_service_account_file(KEY)
-bq = bigquery.Client(project=PROJECT, credentials=creds)
-bq.query(f"CREATE SCHEMA IF NOT EXISTS `{PROJECT}.{DATASET}` OPTIONS(location='US')").result()
+SCHEMA = [
+    bigquery.SchemaField("txn_id", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("ts", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("user_id", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("merchant_id", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("merchant_cat", "STRING"),
+    bigquery.SchemaField("amount", "INTEGER", mode="REQUIRED"),
+    bigquery.SchemaField("city", "STRING"),
+    bigquery.SchemaField("device_id", "STRING"),
+    bigquery.SchemaField("channel", "STRING"),
+    bigquery.SchemaField("is_fraud", "STRING", mode="REQUIRED"),
+    bigquery.SchemaField("fraud_type", "STRING"),
+]
 
-job_cfg = bigquery.LoadJobConfig(source_format="CSV", skip_leading_rows=1,
-                                 autodetect=True, write_disposition="WRITE_TRUNCATE")
-for path in sorted(glob.glob("data/mart_*.csv")):
-    table = f"{PROJECT}.{DATASET}.{os.path.splitext(os.path.basename(path))[0]}"
-    with open(path, "rb") as f:
+
+def main():
+    bq = bigquery.Client(project=PROJECT)
+    bq.create_dataset(f"{PROJECT}.{DATASET}", exists_ok=True)
+    job_cfg = bigquery.LoadJobConfig(
+        source_format="CSV",
+        skip_leading_rows=1,
+        schema=SCHEMA,
+        write_disposition="WRITE_TRUNCATE",
+    )
+    table = f"{PROJECT}.{DATASET}.{TABLE}"
+    with open("data/qris_clean.csv", "rb") as f:
         bq.load_table_from_file(f, table, job_config=job_cfg).result()
     print(table, "->", bq.get_table(table).num_rows, "rows")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,1774 @@
+[0m13:17:05.188785 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F209BDC050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2073AC910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F20C2E7890>]}
+
+
+============================== 13:17:05.194612 | e72e99b3-4f1f-4778-a3e6-64b665c65fc5 ==============================
+[0m13:17:05.194612 [info ] [MainThread]: Running with dbt=1.12.5
+[0m13:17:05.195284 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'invocation_command': 'dbt debug', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\qris-streaming-lakehouse\\qris_analytics\\logs'}
+[0m13:17:05.235068 [info ] [MainThread]: dbt version: 1.12.5
+[0m13:17:05.235613 [info ] [MainThread]: python version: 3.14.3
+[0m13:17:05.236043 [info ] [MainThread]: python path: C:\Users\lexdw\AppData\Local\Python\pythoncore-3.14-64\python.exe
+[0m13:17:05.236405 [info ] [MainThread]: os info: Windows-11-10.0.26300-SP0
+[0m13:17:07.436113 [info ] [MainThread]: Using profiles dir at C:\Users\lexdw\.dbt
+[0m13:17:07.437540 [info ] [MainThread]: Using profiles.yml file at C:\Users\lexdw\.dbt\profiles.yml
+[0m13:17:07.437986 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\dbt_project.yml
+[0m13:17:07.438358 [info ] [MainThread]: adapter type: bigquery
+[0m13:17:07.438696 [info ] [MainThread]: adapter version: 1.12.1
+[0m13:17:07.560452 [info ] [MainThread]: Configuration:
+[0m13:17:07.561033 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m13:17:07.561623 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m13:17:07.562011 [info ] [MainThread]: Required dependencies:
+[0m13:17:07.562446 [debug] [MainThread]: Executing "git --help"
+[0m13:17:07.621383 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:17:07.621895 [debug] [MainThread]: STDERR: "b''"
+[0m13:17:07.622290 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:17:07.622675 [info ] [MainThread]: Connection:
+[0m13:17:07.623129 [info ] [MainThread]:   method: service-account
+[0m13:17:07.623623 [info ] [MainThread]:   database: epoch-ai-data-center
+[0m13:17:07.623964 [info ] [MainThread]:   execution_project: epoch-ai-data-center
+[0m13:17:07.624300 [info ] [MainThread]:   schema: qris_analytics
+[0m13:17:07.624647 [info ] [MainThread]:   location: US
+[0m13:17:07.624997 [info ] [MainThread]:   priority: None
+[0m13:17:07.625322 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m13:17:07.625634 [info ] [MainThread]:   reservation: None
+[0m13:17:07.625936 [info ] [MainThread]:   impersonate_service_account: None
+[0m13:17:07.626234 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m13:17:07.626526 [info ] [MainThread]:   job_retries: 1
+[0m13:17:07.626821 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m13:17:07.627113 [info ] [MainThread]:   job_execution_timeout_seconds: None
+[0m13:17:07.627469 [info ] [MainThread]:   job_link_info_level_log: False
+[0m13:17:07.627794 [info ] [MainThread]:   timeout_seconds: None
+[0m13:17:07.628142 [info ] [MainThread]:   client_id: None
+[0m13:17:07.628497 [info ] [MainThread]:   token_uri: None
+[0m13:17:07.628832 [info ] [MainThread]:   compute_region: None
+[0m13:17:07.629174 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m13:17:07.629502 [info ] [MainThread]:   gcs_bucket: None
+[0m13:17:07.629829 [info ] [MainThread]:   dataproc_batch: None
+[0m13:17:07.630514 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m13:17:08.503459 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m13:17:08.503844 [debug] [MainThread]: On debug: select 1 as id
+[0m13:17:08.504191 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:17:10.731585 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:e8ba2e03-87ea-4698-92d7-dd0fff3e7016&page=queryresults
+[0m13:17:11.154341 [debug] [MainThread]: SQL status: OK in 0.422 seconds
+[0m13:17:14.128284 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m13:17:14.128822 [info ] [MainThread]: [32mAll checks passed![0m
+[0m13:17:14.130113 [debug] [MainThread]: Command `python -m dbt.cli.main debug` succeeded at 13:17:14.130004 after 9.12 seconds
+[0m13:17:14.130389 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m13:17:14.130676 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2280375C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F206FD70B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001F2282448D0>]}
+[0m13:17:14.131103 [debug] [MainThread]: Flushing usage events
+[0m13:17:15.746724 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:17:19.629556 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A4FC60050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A4D414A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A523B3890>]}
+
+
+============================== 13:17:19.634566 | 5a2ef44b-65bc-4608-8a65-588d6da302ca ==============================
+[0m13:17:19.634566 [info ] [MainThread]: Running with dbt=1.12.5
+[0m13:17:19.635282 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'False', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'invocation_command': 'dbt run', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\qris-streaming-lakehouse\\qris_analytics\\logs'}
+[0m13:17:21.788287 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A6E0B6780>]}
+[0m13:17:21.866620 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A6E2805A0>]}
+[0m13:17:21.867559 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m13:17:22.681359 [debug] [MainThread]: checksum: d723812a82ccef10dcdc8e17fa133f99cd0dfc3f4d01bd4e40e9c8710dd2e296, vars: {}, profile: qris_analytics, target: dev, version: 1.12.5
+[0m13:17:22.682503 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m13:17:22.683032 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A6E0E9C50>]}
+[0m13:17:25.284421 [warn ] [MainThread]: [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `accepted_values` defined on
+'mart_fraud_flags' in package 'qris_analytics' (models\schema.yml). Arguments to
+generic tests should be nested under the `arguments` property.
+[0m13:17:25.285025 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A702F8410>]}
+[0m13:17:25.547538 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A70413850>]}
+[0m13:17:25.649376 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\manifest.json
+[0m13:17:25.654251 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\semantic_manifest.json
+[0m13:17:25.785757 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\osi_document.json
+[0m13:17:25.807269 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A704961A0>]}
+[0m13:17:25.807738 [info ] [MainThread]: Found 4 models, 17 data tests, 1 source, 561 macros
+[0m13:17:25.808160 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A7034C710>]}
+[0m13:17:25.810237 [info ] [MainThread]: 
+[0m13:17:25.810629 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m13:17:25.810961 [info ] [MainThread]: 
+[0m13:17:25.811460 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m13:17:25.816183 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center'
+[0m13:17:25.816844 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:17:27.662754 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_qris_analytics'
+[0m13:17:27.663182 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:17:29.685796 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A70330100>]}
+[0m13:17:29.686225 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:17:29.737952 [debug] [Thread-3 (]: Began running node model.qris_analytics.stg_qris
+[0m13:17:29.738487 [info ] [Thread-3 (]: 1 of 4 START sql view model qris_analytics.stg_qris ............................ [RUN]
+[0m13:17:29.739236 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.qris_analytics.stg_qris'
+[0m13:17:29.739689 [debug] [Thread-3 (]: Began compiling node model.qris_analytics.stg_qris
+[0m13:17:29.745246 [debug] [Thread-3 (]: Writing injected SQL for node "model.qris_analytics.stg_qris"
+[0m13:17:29.748132 [debug] [Thread-3 (]: Began executing node model.qris_analytics.stg_qris
+[0m13:17:29.775854 [debug] [Thread-3 (]: Writing runtime sql for node "model.qris_analytics.stg_qris"
+[0m13:17:29.778365 [debug] [Thread-3 (]: On model.qris_analytics.stg_qris: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "model.qris_analytics.stg_qris"} */
+
+
+  create or replace view `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+  OPTIONS()
+  as 
+
+-- Staging: parse string jadi tipe bener. ts CSV "%Y-%m-%d %H:%M"
+-- tidak valid buat TIMESTAMP BigQuery, jadi parse di sini.
+select
+  txn_id,
+  user_id,
+  merchant_id,
+  merchant_cat,
+  city,
+  device_id,
+  channel,
+  cast(amount as int64) as amount,
+  parse_timestamp('%Y-%m-%d %H:%M', ts) as event_ts,
+  date(parse_timestamp('%Y-%m-%d %H:%M', ts)) as event_date,
+  is_fraud = '1' as is_fraud_flag,
+  fraud_type
+from `epoch-ai-data-center`.`qris_analytics`.`silver_transactions`;
+
+
+[0m13:17:29.778818 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m13:17:31.931289 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:e1a11a5b-6c62-4843-b696-709452281f72&page=queryresults
+[0m13:17:32.868420 [debug] [Thread-3 (]: SQL status: OK in 0.937 seconds
+[0m13:17:33.014040 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A70394870>]}
+[0m13:17:33.014872 [info ] [Thread-3 (]: 1 of 4 OK created sql view model qris_analytics.stg_qris ....................... [[32mCREATE VIEW (0 processed)[0m in 3.27s]
+[0m13:17:33.015647 [debug] [Thread-3 (]: Finished running node model.qris_analytics.stg_qris
+[0m13:17:33.016396 [debug] [Thread-3 (]: Began running node model.qris_analytics.mart_fraud_flags
+[0m13:17:33.016967 [info ] [Thread-3 (]: 2 of 4 START sql table model qris_analytics.mart_fraud_flags ................... [RUN]
+[0m13:17:33.017621 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.qris_analytics.stg_qris, now model.qris_analytics.mart_fraud_flags)
+[0m13:17:33.017968 [debug] [Thread-3 (]: Began compiling node model.qris_analytics.mart_fraud_flags
+[0m13:17:33.020508 [debug] [Thread-3 (]: Writing injected SQL for node "model.qris_analytics.mart_fraud_flags"
+[0m13:17:33.021749 [debug] [Thread-3 (]: Began executing node model.qris_analytics.mart_fraud_flags
+[0m13:17:33.047274 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m13:17:34.675276 [debug] [Thread-3 (]: Hard refreshing `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags` because it is not replaceable
+[0m13:17:35.092441 [debug] [Thread-3 (]: Writing runtime sql for node "model.qris_analytics.mart_fraud_flags"
+[0m13:17:35.093843 [debug] [Thread-3 (]: On model.qris_analytics.mart_fraud_flags: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "model.qris_analytics.mart_fraud_flags"} */
+
+  
+    
+
+    create or replace table `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+      
+    partition by day
+    cluster by fraud_type
+
+    
+    OPTIONS()
+    as (
+      
+
+-- Fraud per tipe per hari. Partition day (filter tanggal),
+-- cluster fraud_type (tile selalu breakdown per tipe).
+select
+  event_date as day,
+  fraud_type,
+  count(*) as count
+from `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+where is_fraud_flag
+group by 1, 2
+    );
+  
+[0m13:17:36.141518 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:4dac44a5-2819-4aed-a97a-3fec7532a8f7&page=queryresults
+[0m13:17:39.457141 [debug] [Thread-3 (]: SQL status: OK in 3.315 seconds
+[0m13:17:39.855594 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A701CA250>]}
+[0m13:17:39.856257 [info ] [Thread-3 (]: 2 of 4 OK created sql table model qris_analytics.mart_fraud_flags .............. [[32mCREATE TABLE (112.0 rows, 2.3 MiB processed)[0m in 6.84s]
+[0m13:17:39.857032 [debug] [Thread-3 (]: Finished running node model.qris_analytics.mart_fraud_flags
+[0m13:17:39.857616 [debug] [Thread-3 (]: Began running node model.qris_analytics.mart_merchant_volume
+[0m13:17:39.858163 [info ] [Thread-3 (]: 3 of 4 START sql table model qris_analytics.mart_merchant_volume ............... [RUN]
+[0m13:17:39.858662 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.qris_analytics.mart_fraud_flags, now model.qris_analytics.mart_merchant_volume)
+[0m13:17:39.858977 [debug] [Thread-3 (]: Began compiling node model.qris_analytics.mart_merchant_volume
+[0m13:17:39.861183 [debug] [Thread-3 (]: Writing injected SQL for node "model.qris_analytics.mart_merchant_volume"
+[0m13:17:39.862410 [debug] [Thread-3 (]: Began executing node model.qris_analytics.mart_merchant_volume
+[0m13:17:39.863944 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m13:17:41.400324 [debug] [Thread-3 (]: Hard refreshing `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume` because it is not replaceable
+[0m13:17:41.817662 [debug] [Thread-3 (]: Writing runtime sql for node "model.qris_analytics.mart_merchant_volume"
+[0m13:17:41.819157 [debug] [Thread-3 (]: On model.qris_analytics.mart_merchant_volume: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "model.qris_analytics.mart_merchant_volume"} */
+
+  
+    
+
+    create or replace table `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+      
+    partition by day
+    cluster by merchant_id
+
+    
+    OPTIONS()
+    as (
+      
+
+-- Volume per merchant per hari. Partition day karena semua query
+-- dashboard filter rentang tanggal; cluster merchant_id karena
+-- tile utama group by merchant.
+select
+  merchant_id,
+  merchant_cat,
+  city,
+  event_date as day,
+  count(*) as txn_count,
+  sum(amount) as total_amount
+from `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+group by 1, 2, 3, 4
+    );
+  
+[0m13:17:42.797590 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:561fc79b-5e33-4170-8fd4-1c1d075a61c3&page=queryresults
+[0m13:17:45.068581 [debug] [Thread-3 (]: SQL status: OK in 2.270 seconds
+[0m13:17:45.444264 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A700BB540>]}
+[0m13:17:45.444856 [info ] [Thread-3 (]: 3 of 4 OK created sql table model qris_analytics.mart_merchant_volume .......... [[32mCREATE TABLE (840.0 rows, 4.8 MiB processed)[0m in 5.59s]
+[0m13:17:45.445570 [debug] [Thread-3 (]: Finished running node model.qris_analytics.mart_merchant_volume
+[0m13:17:45.445989 [debug] [Thread-3 (]: Began running node model.qris_analytics.mart_user_risk
+[0m13:17:45.446407 [info ] [Thread-3 (]: 4 of 4 START sql table model qris_analytics.mart_user_risk ..................... [RUN]
+[0m13:17:45.446855 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.qris_analytics.mart_merchant_volume, now model.qris_analytics.mart_user_risk)
+[0m13:17:45.447190 [debug] [Thread-3 (]: Began compiling node model.qris_analytics.mart_user_risk
+[0m13:17:45.449595 [debug] [Thread-3 (]: Writing injected SQL for node "model.qris_analytics.mart_user_risk"
+[0m13:17:45.451218 [debug] [Thread-3 (]: Began executing node model.qris_analytics.mart_user_risk
+[0m13:17:45.452428 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m13:17:47.003909 [debug] [Thread-3 (]: Hard refreshing `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk` because it is not replaceable
+[0m13:17:47.409051 [debug] [Thread-3 (]: Writing runtime sql for node "model.qris_analytics.mart_user_risk"
+[0m13:17:47.410909 [debug] [Thread-3 (]: On model.qris_analytics.mart_user_risk: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "model.qris_analytics.mart_user_risk"} */
+
+  
+    
+
+    create or replace table `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+      
+    
+    cluster by user_id
+
+    
+    OPTIONS()
+    as (
+      
+
+-- Skor risiko per user. TIDAK di-partition sengaja: ini snapshot
+-- per user (bukan series waktu), partition tidak menghemat apa pun.
+-- Cluster user_id karena semua lookup filter user.
+with scored as (
+  select
+    user_id,
+    case fraud_type
+      when 'velocity' then 4
+      when 'velocity_detected' then 4
+      when 'night' then 3
+      when 'round_amount' then 2
+      when 'new_device' then 2
+      else 1
+    end as w
+  from `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+  where is_fraud_flag
+),
+agg as (
+  select user_id, sum(w) as risk_score
+  from scored
+  group by 1
+)
+select
+  user_id,
+  least(risk_score, 10) as risk_score,
+  case
+    when risk_score >= 8 then 'high'
+    when risk_score >= 4 then 'medium'
+    else 'low'
+  end as risk_band
+from agg
+    );
+  
+[0m13:17:48.223286 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:3c73a859-ed50-479c-85c4-e24874fcc955&page=queryresults
+[0m13:17:49.729672 [debug] [Thread-3 (]: SQL status: OK in 1.506 seconds
+[0m13:17:50.119968 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5a2ef44b-65bc-4608-8a65-588d6da302ca', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A701904D0>]}
+[0m13:17:50.120598 [info ] [Thread-3 (]: 4 of 4 OK created sql table model qris_analytics.mart_user_risk ................ [[32mCREATE TABLE (1.6k rows, 1.3 MiB processed)[0m in 4.67s]
+[0m13:17:50.121362 [debug] [Thread-3 (]: Finished running node model.qris_analytics.mart_user_risk
+[0m13:17:50.122582 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m13:17:50.167620 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m13:17:50.167986 [debug] [MainThread]: Connection 'list_epoch-ai-data-center' was properly closed.
+[0m13:17:50.168223 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_qris_analytics' was properly closed.
+[0m13:17:50.168449 [debug] [MainThread]: Connection 'model.qris_analytics.mart_user_risk' was properly closed.
+[0m13:17:50.168754 [info ] [MainThread]: 
+[0m13:17:50.169185 [info ] [MainThread]: Finished running 3 table models, 1 view model in 0 hours 0 minutes and 24.36 seconds (24.36s).
+[0m13:17:50.170523 [debug] [MainThread]: Command end result
+[0m13:17:50.204340 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\manifest.json
+[0m13:17:50.208810 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\semantic_manifest.json
+[0m13:17:50.212367 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\osi_document.json
+[0m13:17:50.219181 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\run_results.json
+[0m13:17:50.219539 [info ] [MainThread]: 
+[0m13:17:50.219966 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m13:17:50.220333 [info ] [MainThread]: 
+[0m13:17:50.220702 [info ] [MainThread]: Done. PASS=4 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=4
+[0m13:17:50.221260 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 2 occurrences
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m13:17:50.222445 [debug] [MainThread]: Command `python -m dbt.cli.main run` succeeded at 13:17:50.222348 after 30.75 seconds
+[0m13:17:50.222773 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A4D6FB590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A70121BB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014A70123470>]}
+[0m13:17:50.223088 [debug] [MainThread]: Flushing usage events
+[0m13:17:52.243958 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:17:55.934656 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022806E8C050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022804654A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000228095DF890>]}
+
+
+============================== 13:17:55.940291 | f95459a1-504a-4c71-a8ef-38d77c12e0e2 ==============================
+[0m13:17:55.940291 [info ] [MainThread]: Running with dbt=1.12.5
+[0m13:17:55.941075 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt test', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\qris-streaming-lakehouse\\qris_analytics\\logs'}
+[0m13:17:58.063657 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'f95459a1-504a-4c71-a8ef-38d77c12e0e2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002282531A780>]}
+[0m13:17:58.145447 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'f95459a1-504a-4c71-a8ef-38d77c12e0e2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000228254E05A0>]}
+[0m13:17:58.146492 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m13:17:59.013420 [debug] [MainThread]: checksum: d723812a82ccef10dcdc8e17fa133f99cd0dfc3f4d01bd4e40e9c8710dd2e296, vars: {}, profile: qris_analytics, target: dev, version: 1.12.5
+[0m13:17:59.192576 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m13:17:59.192964 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m13:17:59.193221 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m13:17:59.201695 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'f95459a1-504a-4c71-a8ef-38d77c12e0e2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022825ABF050>]}
+[0m13:17:59.330479 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\manifest.json
+[0m13:17:59.334292 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\semantic_manifest.json
+[0m13:17:59.373063 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\osi_document.json
+[0m13:17:59.402528 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'f95459a1-504a-4c71-a8ef-38d77c12e0e2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022825BE35C0>]}
+[0m13:17:59.403010 [info ] [MainThread]: Found 4 models, 17 data tests, 1 source, 561 macros
+[0m13:17:59.403474 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f95459a1-504a-4c71-a8ef-38d77c12e0e2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022825CC2270>]}
+[0m13:17:59.406261 [info ] [MainThread]: 
+[0m13:17:59.406661 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m13:17:59.407057 [info ] [MainThread]: 
+[0m13:17:59.407620 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m13:17:59.411436 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_qris_analytics'
+[0m13:17:59.411777 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:18:01.291055 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f95459a1-504a-4c71-a8ef-38d77c12e0e2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002280969DE60>]}
+[0m13:18:01.291523 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:18:01.341185 [debug] [Thread-2 (]: Began running node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:18:01.341660 [info ] [Thread-2 (]: 1 of 17 START test accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device  [RUN]
+[0m13:18:01.342343 [debug] [Thread-2 (]: Acquiring new bigquery connection 'test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f'
+[0m13:18:01.342751 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:18:01.374358 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f"
+[0m13:18:01.376125 [debug] [Thread-2 (]: Began executing node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:18:01.397288 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f"
+[0m13:18:01.399269 [debug] [Thread-2 (]: On test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with all_values as (
+
+    select
+        fraud_type as value_field,
+        count(*) as n_records
+
+    from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+    group by fraud_type
+
+)
+
+select *
+from all_values
+where value_field not in (
+    'velocity','velocity_detected','night','round_amount','new_device'
+)
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:01.399901 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m13:18:04.105166 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:6125fb10-9242-4289-9f2c-d63fae7219ad&page=queryresults
+[0m13:18:04.485901 [debug] [Thread-2 (]: SQL status: OK in 0.380 seconds
+[0m13:18:05.366709 [info ] [Thread-2 (]: 1 of 17 PASS accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device  [[32mPASS[0m in 4.02s]
+[0m13:18:05.367566 [debug] [Thread-2 (]: Finished running node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:18:05.367967 [debug] [Thread-2 (]: Began running node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:18:05.368372 [info ] [Thread-2 (]: 2 of 17 START test accepted_values_mart_user_risk_risk_band__high__medium__low . [RUN]
+[0m13:18:05.368840 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f, now test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250)
+[0m13:18:05.369161 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:18:05.383126 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250"
+[0m13:18:05.384556 [debug] [Thread-2 (]: Began executing node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:18:05.386643 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250"
+[0m13:18:05.388014 [debug] [Thread-2 (]: On test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with all_values as (
+
+    select
+        risk_band as value_field,
+        count(*) as n_records
+
+    from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+    group by risk_band
+
+)
+
+select *
+from all_values
+where value_field not in (
+    'high','medium','low'
+)
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:05.388482 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:07.201640 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:c86d0c22-7fbe-43e3-8289-c3628ecbec5c&page=queryresults
+[0m13:18:07.551057 [debug] [Thread-2 (]: SQL status: OK in 0.349 seconds
+[0m13:18:08.334389 [info ] [Thread-2 (]: 2 of 17 PASS accepted_values_mart_user_risk_risk_band__high__medium__low ....... [[32mPASS[0m in 2.97s]
+[0m13:18:08.335478 [debug] [Thread-2 (]: Finished running node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:18:08.335952 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:18:08.336384 [info ] [Thread-2 (]: 3 of 17 START test not_null_mart_fraud_flags_count ............................. [RUN]
+[0m13:18:08.337037 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250, now test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a)
+[0m13:18:08.337394 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:18:08.346180 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a"
+[0m13:18:08.347966 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:18:08.350030 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a"
+[0m13:18:08.352541 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select count
+from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+where count is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:08.353071 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:10.251442 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:e3235148-e7dd-4cd4-b140-a7203637a1b8&page=queryresults
+[0m13:18:10.633680 [debug] [Thread-2 (]: SQL status: OK in 0.382 seconds
+[0m13:18:11.374599 [info ] [Thread-2 (]: 3 of 17 PASS not_null_mart_fraud_flags_count ................................... [[32mPASS[0m in 3.04s]
+[0m13:18:11.375461 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:18:11.375877 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:18:11.376340 [info ] [Thread-2 (]: 4 of 17 START test not_null_mart_fraud_flags_day ............................... [RUN]
+[0m13:18:11.376802 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a, now test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611)
+[0m13:18:11.377093 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:18:11.382582 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611"
+[0m13:18:11.383914 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:18:11.386105 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611"
+[0m13:18:11.387641 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select day
+from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+where day is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:11.388258 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:13.274047 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:f2d2d1db-544d-4ec9-b5ff-414b4f6153d9&page=queryresults
+[0m13:18:13.669150 [debug] [Thread-2 (]: SQL status: OK in 0.395 seconds
+[0m13:18:14.428777 [info ] [Thread-2 (]: 4 of 17 PASS not_null_mart_fraud_flags_day ..................................... [[32mPASS[0m in 3.05s]
+[0m13:18:14.429546 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:18:14.429951 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:18:14.430363 [info ] [Thread-2 (]: 5 of 17 START test not_null_mart_fraud_flags_fraud_type ........................ [RUN]
+[0m13:18:14.430834 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611, now test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a)
+[0m13:18:14.431141 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:18:14.436088 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a"
+[0m13:18:14.437116 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:18:14.438501 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a"
+[0m13:18:14.439525 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select fraud_type
+from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+where fraud_type is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:14.439936 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:16.215159 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:d3ded5b1-a92e-4eb8-9f5b-838547f12c57&page=queryresults
+[0m13:18:16.592503 [debug] [Thread-2 (]: SQL status: OK in 0.377 seconds
+[0m13:18:17.370939 [info ] [Thread-2 (]: 5 of 17 PASS not_null_mart_fraud_flags_fraud_type .............................. [[32mPASS[0m in 2.94s]
+[0m13:18:17.371835 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:18:17.372216 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:18:17.372596 [info ] [Thread-2 (]: 6 of 17 START test not_null_mart_merchant_volume_city .......................... [RUN]
+[0m13:18:17.373082 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a, now test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915)
+[0m13:18:17.373382 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:18:17.378752 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915"
+[0m13:18:17.380103 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:18:17.381674 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915"
+[0m13:18:17.383078 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select city
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where city is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:17.383536 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:19.200006 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:585434c6-6934-4e72-baae-3410d66faddf&page=queryresults
+[0m13:18:19.566832 [debug] [Thread-2 (]: SQL status: OK in 0.366 seconds
+[0m13:18:20.995199 [info ] [Thread-2 (]: 6 of 17 PASS not_null_mart_merchant_volume_city ................................ [[32mPASS[0m in 3.62s]
+[0m13:18:20.995948 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:18:20.996393 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:18:20.996745 [info ] [Thread-2 (]: 7 of 17 START test not_null_mart_merchant_volume_day ........................... [RUN]
+[0m13:18:20.997180 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915, now test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500)
+[0m13:18:20.997468 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:18:21.002703 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500"
+[0m13:18:21.003936 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:18:21.005270 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500"
+[0m13:18:21.006322 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select day
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where day is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:21.006714 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:22.733915 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:5522daaf-9b25-47b9-af4f-4386b20459b0&page=queryresults
+[0m13:18:23.086753 [debug] [Thread-2 (]: SQL status: OK in 0.352 seconds
+[0m13:18:23.831116 [info ] [Thread-2 (]: 7 of 17 PASS not_null_mart_merchant_volume_day ................................. [[32mPASS[0m in 2.83s]
+[0m13:18:23.831997 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:18:23.832431 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:18:23.832843 [info ] [Thread-2 (]: 8 of 17 START test not_null_mart_merchant_volume_merchant_cat .................. [RUN]
+[0m13:18:23.833371 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500, now test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4)
+[0m13:18:23.833680 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:18:23.839714 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4"
+[0m13:18:23.841100 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:18:23.842846 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4"
+[0m13:18:23.844193 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select merchant_cat
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where merchant_cat is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:23.844679 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:26.326477 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:09ff278e-b4ae-48b8-b117-36d4914b8ad3&page=queryresults
+[0m13:18:26.662781 [debug] [Thread-2 (]: SQL status: OK in 0.336 seconds
+[0m13:18:27.398339 [info ] [Thread-2 (]: 8 of 17 PASS not_null_mart_merchant_volume_merchant_cat ........................ [[32mPASS[0m in 3.56s]
+[0m13:18:27.399206 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:18:27.399591 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:18:27.399971 [info ] [Thread-2 (]: 9 of 17 START test not_null_mart_merchant_volume_merchant_id ................... [RUN]
+[0m13:18:27.400463 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4, now test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc)
+[0m13:18:27.400766 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:18:27.405655 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc"
+[0m13:18:27.406723 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:18:27.408069 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc"
+[0m13:18:27.409128 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select merchant_id
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where merchant_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:27.409508 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:29.314293 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:490adc66-b88d-4088-bdd1-09aab59f9abf&page=queryresults
+[0m13:18:29.687784 [debug] [Thread-2 (]: SQL status: OK in 0.373 seconds
+[0m13:18:30.431103 [info ] [Thread-2 (]: 9 of 17 PASS not_null_mart_merchant_volume_merchant_id ......................... [[32mPASS[0m in 3.03s]
+[0m13:18:30.431890 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:18:30.432293 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:18:30.432666 [info ] [Thread-2 (]: 10 of 17 START test not_null_mart_merchant_volume_total_amount ................. [RUN]
+[0m13:18:30.433114 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc, now test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35)
+[0m13:18:30.433406 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:18:30.438421 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35"
+[0m13:18:30.439703 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:18:30.441215 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35"
+[0m13:18:30.442366 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select total_amount
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where total_amount is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:30.442740 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:32.232773 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:82209086-6b6d-48a5-acdb-a02f88e94401&page=queryresults
+[0m13:18:32.681466 [debug] [Thread-2 (]: SQL status: OK in 0.448 seconds
+[0m13:18:33.351005 [info ] [Thread-2 (]: 10 of 17 PASS not_null_mart_merchant_volume_total_amount ....................... [[32mPASS[0m in 2.92s]
+[0m13:18:33.351753 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:18:33.352210 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:18:33.352560 [info ] [Thread-2 (]: 11 of 17 START test not_null_mart_merchant_volume_txn_count .................... [RUN]
+[0m13:18:33.353011 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35, now test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de)
+[0m13:18:33.353302 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:18:33.358278 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de"
+[0m13:18:33.359432 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:18:33.361075 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de"
+[0m13:18:33.362291 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select txn_count
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where txn_count is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:33.362696 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:35.594684 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:c155e5d3-c845-4171-9371-2d081aefdf30&page=queryresults
+[0m13:18:35.958743 [debug] [Thread-2 (]: SQL status: OK in 0.363 seconds
+[0m13:18:36.773509 [info ] [Thread-2 (]: 11 of 17 PASS not_null_mart_merchant_volume_txn_count .......................... [[32mPASS[0m in 3.42s]
+[0m13:18:36.774193 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:18:36.774562 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:18:36.774937 [info ] [Thread-2 (]: 12 of 17 START test not_null_mart_user_risk_risk_score ......................... [RUN]
+[0m13:18:36.775455 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de, now test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e)
+[0m13:18:36.775792 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:18:36.781502 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e"
+[0m13:18:36.782783 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:18:36.784320 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e"
+[0m13:18:36.785693 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select risk_score
+from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+where risk_score is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:36.786183 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:38.736769 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:59ebf2c8-e179-46e9-9510-5d29c8330dcf&page=queryresults
+[0m13:18:39.105988 [debug] [Thread-2 (]: SQL status: OK in 0.369 seconds
+[0m13:18:39.817031 [info ] [Thread-2 (]: 12 of 17 PASS not_null_mart_user_risk_risk_score ............................... [[32mPASS[0m in 3.04s]
+[0m13:18:39.817772 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:18:39.818218 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:18:39.818637 [info ] [Thread-2 (]: 13 of 17 START test not_null_mart_user_risk_user_id ............................ [RUN]
+[0m13:18:39.819190 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e, now test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9)
+[0m13:18:39.819505 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:18:39.825375 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9"
+[0m13:18:39.827025 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:18:39.829198 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9"
+[0m13:18:39.830929 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select user_id
+from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+where user_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:39.831621 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:41.630812 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:e102f8ab-044a-43c4-904e-31f54de5d1bf&page=queryresults
+[0m13:18:42.014829 [debug] [Thread-2 (]: SQL status: OK in 0.384 seconds
+[0m13:18:42.699292 [info ] [Thread-2 (]: 13 of 17 PASS not_null_mart_user_risk_user_id .................................. [[32mPASS[0m in 2.88s]
+[0m13:18:42.700019 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:18:42.700447 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:18:42.700830 [info ] [Thread-2 (]: 14 of 17 START test not_null_stg_qris_txn_id ................................... [RUN]
+[0m13:18:42.701352 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9, now test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6)
+[0m13:18:42.701654 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:18:42.706585 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6"
+[0m13:18:42.708064 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:18:42.709619 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6"
+[0m13:18:42.710816 [debug] [Thread-2 (]: On test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select txn_id
+from `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+where txn_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:42.711272 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:44.470872 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:1b8badb4-e439-42ef-a70b-4b37f2d8908d&page=queryresults
+[0m13:18:44.822445 [debug] [Thread-2 (]: SQL status: OK in 0.351 seconds
+[0m13:18:45.491831 [info ] [Thread-2 (]: 14 of 17 PASS not_null_stg_qris_txn_id ......................................... [[32mPASS[0m in 2.79s]
+[0m13:18:45.492685 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:18:45.493105 [debug] [Thread-2 (]: Began running node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:18:45.493530 [info ] [Thread-2 (]: 15 of 17 START test source_not_null_qris_silver_transactions_txn_id ............ [RUN]
+[0m13:18:45.494001 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6, now test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d)
+[0m13:18:45.494302 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:18:45.499471 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d"
+[0m13:18:45.501058 [debug] [Thread-2 (]: Began executing node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:18:45.502680 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d"
+[0m13:18:45.504085 [debug] [Thread-2 (]: On test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select txn_id
+from `epoch-ai-data-center`.`qris_analytics`.`silver_transactions`
+where txn_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:45.504483 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:47.398766 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:dfa28bc8-574f-4aa9-a065-5652d7902911&page=queryresults
+[0m13:18:47.794701 [debug] [Thread-2 (]: SQL status: OK in 0.395 seconds
+[0m13:18:48.569999 [info ] [Thread-2 (]: 15 of 17 PASS source_not_null_qris_silver_transactions_txn_id .................. [[32mPASS[0m in 3.08s]
+[0m13:18:48.570689 [debug] [Thread-2 (]: Finished running node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:18:48.571028 [debug] [Thread-2 (]: Began running node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:18:48.571381 [info ] [Thread-2 (]: 16 of 17 START test unique_mart_user_risk_user_id .............................. [RUN]
+[0m13:18:48.571843 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d, now test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8)
+[0m13:18:48.572141 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:18:48.578814 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8"
+[0m13:18:48.580682 [debug] [Thread-2 (]: Began executing node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:18:48.582292 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8"
+[0m13:18:48.583765 [debug] [Thread-2 (]: On test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select user_id as unique_field
+  from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+  where user_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:48.584166 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:50.335120 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:9c5022e8-9967-45bd-89b1-5d741afadbeb&page=queryresults
+[0m13:18:50.646062 [debug] [Thread-2 (]: SQL status: OK in 0.310 seconds
+[0m13:18:51.332803 [info ] [Thread-2 (]: 16 of 17 PASS unique_mart_user_risk_user_id .................................... [[32mPASS[0m in 2.76s]
+[0m13:18:51.333607 [debug] [Thread-2 (]: Finished running node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:18:51.334011 [debug] [Thread-2 (]: Began running node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:18:51.334391 [info ] [Thread-2 (]: 17 of 17 START test unique_stg_qris_txn_id ..................................... [RUN]
+[0m13:18:51.334842 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8, now test.qris_analytics.unique_stg_qris_txn_id.6af380e088)
+[0m13:18:51.335136 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:18:51.340331 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.unique_stg_qris_txn_id.6af380e088"
+[0m13:18:51.341591 [debug] [Thread-2 (]: Began executing node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:18:51.343296 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.unique_stg_qris_txn_id.6af380e088"
+[0m13:18:51.344607 [debug] [Thread-2 (]: On test.qris_analytics.unique_stg_qris_txn_id.6af380e088: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.unique_stg_qris_txn_id.6af380e088"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select txn_id as unique_field
+  from `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+  where txn_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:18:51.345237 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:18:53.196707 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:d408a2f8-0dbb-412c-bc6d-aad2acd5bc7f&page=queryresults
+[0m13:18:53.608848 [debug] [Thread-2 (]: SQL status: OK in 0.412 seconds
+[0m13:18:54.380363 [info ] [Thread-2 (]: 17 of 17 PASS unique_stg_qris_txn_id ........................................... [[32mPASS[0m in 3.05s]
+[0m13:18:54.381144 [debug] [Thread-2 (]: Finished running node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:18:54.382437 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m13:18:54.427455 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m13:18:54.427941 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_qris_analytics' was properly closed.
+[0m13:18:54.428257 [debug] [MainThread]: Connection 'test.qris_analytics.unique_stg_qris_txn_id.6af380e088' was properly closed.
+[0m13:18:54.428563 [info ] [MainThread]: 
+[0m13:18:54.428986 [info ] [MainThread]: Finished running 17 data tests in 0 hours 0 minutes and 55.02 seconds (55.02s).
+[0m13:18:54.432083 [debug] [MainThread]: Command end result
+[0m13:18:54.465252 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\manifest.json
+[0m13:18:54.468888 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\semantic_manifest.json
+[0m13:18:54.472217 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\osi_document.json
+[0m13:18:54.479583 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\run_results.json
+[0m13:18:54.479884 [info ] [MainThread]: 
+[0m13:18:54.480359 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m13:18:54.480777 [info ] [MainThread]: 
+[0m13:18:54.481191 [info ] [MainThread]: Done. PASS=17 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=17
+[0m13:18:54.482338 [debug] [MainThread]: Command `python -m dbt.cli.main test` succeeded at 13:18:54.482241 after 58.72 seconds
+[0m13:18:54.482694 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022825C59D90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000228275FCC00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000228275FCD60>]}
+[0m13:18:54.483003 [debug] [MainThread]: Flushing usage events
+[0m13:18:55.988298 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:27:07.929210 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBD723C050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBD49F8A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBD998F890>]}
+
+
+============================== 13:27:07.935013 | 8bfda08f-58c3-4a26-8d5b-22c170da07f6 ==============================
+[0m13:27:07.935013 [info ] [MainThread]: Running with dbt=1.12.5
+[0m13:27:07.935635 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt test', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\qris-streaming-lakehouse\\qris_analytics\\logs'}
+[0m13:27:10.228270 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '8bfda08f-58c3-4a26-8d5b-22c170da07f6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF5696780>]}
+[0m13:27:10.306576 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '8bfda08f-58c3-4a26-8d5b-22c170da07f6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF58645A0>]}
+[0m13:27:10.307536 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m13:27:11.223839 [debug] [MainThread]: checksum: d723812a82ccef10dcdc8e17fa133f99cd0dfc3f4d01bd4e40e9c8710dd2e296, vars: {}, profile: qris_analytics, target: dev, version: 1.12.5
+[0m13:27:11.430536 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m13:27:11.431493 [debug] [MainThread]: Partial parsing: updated file: qris_analytics://models\schema.yml
+[0m13:27:12.205070 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '8bfda08f-58c3-4a26-8d5b-22c170da07f6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF5E43850>]}
+[0m13:27:12.306782 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\manifest.json
+[0m13:27:12.310632 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\semantic_manifest.json
+[0m13:27:12.358482 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\osi_document.json
+[0m13:27:12.393724 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '8bfda08f-58c3-4a26-8d5b-22c170da07f6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF754E300>]}
+[0m13:27:12.394530 [info ] [MainThread]: Found 4 models, 17 data tests, 1 source, 561 macros
+[0m13:27:12.395042 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '8bfda08f-58c3-4a26-8d5b-22c170da07f6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF7662C10>]}
+[0m13:27:12.398185 [info ] [MainThread]: 
+[0m13:27:12.398704 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m13:27:12.399115 [info ] [MainThread]: 
+[0m13:27:12.399694 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m13:27:12.404676 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_qris_analytics'
+[0m13:27:12.405275 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m13:27:14.536647 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '8bfda08f-58c3-4a26-8d5b-22c170da07f6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBD9A39E60>]}
+[0m13:27:14.537172 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:27:14.597852 [debug] [Thread-2 (]: Began running node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:27:14.598505 [info ] [Thread-2 (]: 1 of 17 START test accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device  [RUN]
+[0m13:27:14.599350 [debug] [Thread-2 (]: Acquiring new bigquery connection 'test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f'
+[0m13:27:14.599784 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:27:14.611432 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f"
+[0m13:27:14.612805 [debug] [Thread-2 (]: Began executing node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:27:14.646568 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f"
+[0m13:27:14.648308 [debug] [Thread-2 (]: On test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with all_values as (
+
+    select
+        fraud_type as value_field,
+        count(*) as n_records
+
+    from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+    group by fraud_type
+
+)
+
+select *
+from all_values
+where value_field not in (
+    'velocity','velocity_detected','night','round_amount','new_device'
+)
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:14.649007 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m13:27:16.666315 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:dd2893bc-7dde-4c43-a933-e164a9ed72e6&page=queryresults
+[0m13:27:17.065291 [debug] [Thread-2 (]: SQL status: OK in 0.398 seconds
+[0m13:27:17.925304 [info ] [Thread-2 (]: 1 of 17 PASS accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device  [[32mPASS[0m in 3.33s]
+[0m13:27:17.926150 [debug] [Thread-2 (]: Finished running node test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f
+[0m13:27:17.926537 [debug] [Thread-2 (]: Began running node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:27:17.926950 [info ] [Thread-2 (]: 2 of 17 START test accepted_values_mart_user_risk_risk_band__high__medium__low . [RUN]
+[0m13:27:17.927471 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.accepted_values_mart_fraud_flags_fraud_type__velocity__velocity_detected__night__round_amount__new_device.db956fd00f, now test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250)
+[0m13:27:17.927788 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:27:17.933860 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250"
+[0m13:27:17.934991 [debug] [Thread-2 (]: Began executing node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:27:17.936531 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250"
+[0m13:27:17.937641 [debug] [Thread-2 (]: On test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with all_values as (
+
+    select
+        risk_band as value_field,
+        count(*) as n_records
+
+    from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+    group by risk_band
+
+)
+
+select *
+from all_values
+where value_field not in (
+    'high','medium','low'
+)
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:17.938063 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:19.659125 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:157590db-859a-4f7a-891e-603a1a4d08d4&page=queryresults
+[0m13:27:20.017658 [debug] [Thread-2 (]: SQL status: OK in 0.358 seconds
+[0m13:27:20.833097 [info ] [Thread-2 (]: 2 of 17 PASS accepted_values_mart_user_risk_risk_band__high__medium__low ....... [[32mPASS[0m in 2.91s]
+[0m13:27:20.834186 [debug] [Thread-2 (]: Finished running node test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250
+[0m13:27:20.834731 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:27:20.835329 [info ] [Thread-2 (]: 3 of 17 START test not_null_mart_fraud_flags_count ............................. [RUN]
+[0m13:27:20.836485 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.accepted_values_mart_user_risk_risk_band__high__medium__low.bc2616e250, now test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a)
+[0m13:27:20.837087 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:27:20.849725 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a"
+[0m13:27:20.851286 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:27:20.853804 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a"
+[0m13:27:20.855228 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select count
+from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+where count is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:20.855900 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:22.842811 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:79965f37-0159-45d4-80c7-f2b6860f0678&page=queryresults
+[0m13:27:23.236542 [debug] [Thread-2 (]: SQL status: OK in 0.393 seconds
+[0m13:27:24.002184 [info ] [Thread-2 (]: 3 of 17 PASS not_null_mart_fraud_flags_count ................................... [[32mPASS[0m in 3.17s]
+[0m13:27:24.003074 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a
+[0m13:27:24.003573 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:27:24.004070 [info ] [Thread-2 (]: 4 of 17 START test not_null_mart_fraud_flags_day ............................... [RUN]
+[0m13:27:24.004801 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_fraud_flags_count.e56a9dbb9a, now test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611)
+[0m13:27:24.005181 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:27:24.013888 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611"
+[0m13:27:24.015469 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:27:24.017758 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611"
+[0m13:27:24.019358 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select day
+from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+where day is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:24.020243 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:26.022695 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:2523a9d3-f022-49da-9f76-b545ae827c89&page=queryresults
+[0m13:27:26.417505 [debug] [Thread-2 (]: SQL status: OK in 0.394 seconds
+[0m13:27:27.238152 [info ] [Thread-2 (]: 4 of 17 PASS not_null_mart_fraud_flags_day ..................................... [[32mPASS[0m in 3.23s]
+[0m13:27:27.239128 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611
+[0m13:27:27.239564 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:27:27.239996 [info ] [Thread-2 (]: 5 of 17 START test not_null_mart_fraud_flags_fraud_type ........................ [RUN]
+[0m13:27:27.240622 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_fraud_flags_day.b8ef811611, now test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a)
+[0m13:27:27.241086 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:27:27.249322 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a"
+[0m13:27:27.251024 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:27:27.253434 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a"
+[0m13:27:27.255065 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select fraud_type
+from `epoch-ai-data-center`.`qris_analytics`.`mart_fraud_flags`
+where fraud_type is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:27.255711 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:29.245430 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:a73e5a00-44fa-4d38-ac6f-d0a468f9c402&page=queryresults
+[0m13:27:30.371095 [debug] [Thread-2 (]: SQL status: OK in 1.125 seconds
+[0m13:27:31.125438 [info ] [Thread-2 (]: 5 of 17 PASS not_null_mart_fraud_flags_fraud_type .............................. [[32mPASS[0m in 3.88s]
+[0m13:27:31.126256 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a
+[0m13:27:31.126699 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:27:31.127159 [info ] [Thread-2 (]: 6 of 17 START test not_null_mart_merchant_volume_city .......................... [RUN]
+[0m13:27:31.127675 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_fraud_flags_fraud_type.e7beebae4a, now test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915)
+[0m13:27:31.127984 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:27:31.134376 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915"
+[0m13:27:31.135646 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:27:31.137258 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915"
+[0m13:27:31.138648 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select city
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where city is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:31.139315 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:33.129987 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:3445ac35-41b5-4381-90e0-9a40e87b19f9&page=queryresults
+[0m13:27:33.484037 [debug] [Thread-2 (]: SQL status: OK in 0.354 seconds
+[0m13:27:34.214120 [info ] [Thread-2 (]: 6 of 17 PASS not_null_mart_merchant_volume_city ................................ [[32mPASS[0m in 3.09s]
+[0m13:27:34.215007 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915
+[0m13:27:34.215361 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:27:34.215718 [info ] [Thread-2 (]: 7 of 17 START test not_null_mart_merchant_volume_day ........................... [RUN]
+[0m13:27:34.216249 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_city.24476f3915, now test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500)
+[0m13:27:34.216616 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:27:34.221935 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500"
+[0m13:27:34.223142 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:27:34.225327 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500"
+[0m13:27:34.226925 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select day
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where day is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:34.227485 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:36.178519 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:00dff88d-f210-47b8-8cdf-2298ccba7cfd&page=queryresults
+[0m13:27:36.573327 [debug] [Thread-2 (]: SQL status: OK in 0.394 seconds
+[0m13:27:37.318878 [info ] [Thread-2 (]: 7 of 17 PASS not_null_mart_merchant_volume_day ................................. [[32mPASS[0m in 3.10s]
+[0m13:27:37.319869 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500
+[0m13:27:37.320259 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:27:37.320637 [info ] [Thread-2 (]: 8 of 17 START test not_null_mart_merchant_volume_merchant_cat .................. [RUN]
+[0m13:27:37.321149 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_day.5db5ef3500, now test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4)
+[0m13:27:37.321529 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:27:37.327328 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4"
+[0m13:27:37.328648 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:27:37.330497 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4"
+[0m13:27:37.331691 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select merchant_cat
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where merchant_cat is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:37.332308 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:39.103526 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:e1175c07-a99d-4607-9574-64400c9771f3&page=queryresults
+[0m13:27:39.522976 [debug] [Thread-2 (]: SQL status: OK in 0.419 seconds
+[0m13:27:40.229227 [info ] [Thread-2 (]: 8 of 17 PASS not_null_mart_merchant_volume_merchant_cat ........................ [[32mPASS[0m in 2.91s]
+[0m13:27:40.230035 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4
+[0m13:27:40.230455 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:27:40.230856 [info ] [Thread-2 (]: 9 of 17 START test not_null_mart_merchant_volume_merchant_id ................... [RUN]
+[0m13:27:40.231326 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_merchant_cat.4e7308d5a4, now test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc)
+[0m13:27:40.231629 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:27:40.236743 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc"
+[0m13:27:40.237772 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:27:40.239208 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc"
+[0m13:27:40.240260 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select merchant_id
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where merchant_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:40.240637 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:41.967535 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:1196b3b9-15ee-4c08-9165-40e864f7663d&page=queryresults
+[0m13:27:42.314417 [debug] [Thread-2 (]: SQL status: OK in 0.346 seconds
+[0m13:27:43.039840 [info ] [Thread-2 (]: 9 of 17 PASS not_null_mart_merchant_volume_merchant_id ......................... [[32mPASS[0m in 2.81s]
+[0m13:27:43.040653 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc
+[0m13:27:43.041030 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:27:43.041377 [info ] [Thread-2 (]: 10 of 17 START test not_null_mart_merchant_volume_total_amount ................. [RUN]
+[0m13:27:43.041813 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_merchant_id.35b94318dc, now test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35)
+[0m13:27:43.042180 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:27:43.047452 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35"
+[0m13:27:43.048497 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:27:43.049956 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35"
+[0m13:27:43.050999 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select total_amount
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where total_amount is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:43.051423 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:44.712089 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:b76f33f4-1c5f-4b27-9db9-710c5986c594&page=queryresults
+[0m13:27:45.038694 [debug] [Thread-2 (]: SQL status: OK in 0.326 seconds
+[0m13:27:45.798709 [info ] [Thread-2 (]: 10 of 17 PASS not_null_mart_merchant_volume_total_amount ....................... [[32mPASS[0m in 2.76s]
+[0m13:27:45.799435 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35
+[0m13:27:45.799853 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:27:45.800262 [info ] [Thread-2 (]: 11 of 17 START test not_null_mart_merchant_volume_txn_count .................... [RUN]
+[0m13:27:45.800700 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_total_amount.1ce2bf1d35, now test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de)
+[0m13:27:45.800998 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:27:45.805962 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de"
+[0m13:27:45.806990 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:27:45.808435 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de"
+[0m13:27:45.809437 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select txn_count
+from `epoch-ai-data-center`.`qris_analytics`.`mart_merchant_volume`
+where txn_count is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:45.809810 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:47.460882 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:742ba8c6-02f6-45bb-9658-5ee42b18af13&page=queryresults
+[0m13:27:47.825476 [debug] [Thread-2 (]: SQL status: OK in 0.364 seconds
+[0m13:27:48.549414 [info ] [Thread-2 (]: 11 of 17 PASS not_null_mart_merchant_volume_txn_count .......................... [[32mPASS[0m in 2.75s]
+[0m13:27:48.550196 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de
+[0m13:27:48.550603 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:27:48.550956 [info ] [Thread-2 (]: 12 of 17 START test not_null_mart_user_risk_risk_score ......................... [RUN]
+[0m13:27:48.551418 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_merchant_volume_txn_count.00944607de, now test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e)
+[0m13:27:48.551720 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:27:48.556903 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e"
+[0m13:27:48.558053 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:27:48.559545 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e"
+[0m13:27:48.560562 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select risk_score
+from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+where risk_score is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:48.560944 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:50.099297 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:79f1b4af-2e74-4211-b654-bcf67f8b90e3&page=queryresults
+[0m13:27:50.470401 [debug] [Thread-2 (]: SQL status: OK in 0.371 seconds
+[0m13:27:51.184059 [info ] [Thread-2 (]: 12 of 17 PASS not_null_mart_user_risk_risk_score ............................... [[32mPASS[0m in 2.63s]
+[0m13:27:51.184900 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e
+[0m13:27:51.185338 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:27:51.185784 [info ] [Thread-2 (]: 13 of 17 START test not_null_mart_user_risk_user_id ............................ [RUN]
+[0m13:27:51.186385 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_user_risk_risk_score.2e08ae3f2e, now test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9)
+[0m13:27:51.186690 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:27:51.192093 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9"
+[0m13:27:51.193156 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:27:51.194888 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9"
+[0m13:27:51.195959 [debug] [Thread-2 (]: On test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select user_id
+from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+where user_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:51.196348 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:53.029864 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:00d71048-5997-4c08-aa50-29409230146e&page=queryresults
+[0m13:27:53.425458 [debug] [Thread-2 (]: SQL status: OK in 0.395 seconds
+[0m13:27:54.181821 [info ] [Thread-2 (]: 13 of 17 PASS not_null_mart_user_risk_user_id .................................. [[32mPASS[0m in 3.00s]
+[0m13:27:54.182636 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9
+[0m13:27:54.183043 [debug] [Thread-2 (]: Began running node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:27:54.183450 [info ] [Thread-2 (]: 14 of 17 START test not_null_stg_qris_txn_id ................................... [RUN]
+[0m13:27:54.183918 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_mart_user_risk_user_id.5889a880e9, now test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6)
+[0m13:27:54.184208 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:27:54.189842 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6"
+[0m13:27:54.190848 [debug] [Thread-2 (]: Began executing node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:27:54.192294 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6"
+[0m13:27:54.193242 [debug] [Thread-2 (]: On test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select txn_id
+from `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+where txn_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:54.193609 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:56.045663 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:35519a8f-ef5f-4824-8306-80877a88f43a&page=queryresults
+[0m13:27:56.434008 [debug] [Thread-2 (]: SQL status: OK in 0.388 seconds
+[0m13:27:57.133630 [info ] [Thread-2 (]: 14 of 17 PASS not_null_stg_qris_txn_id ......................................... [[32mPASS[0m in 2.95s]
+[0m13:27:57.134436 [debug] [Thread-2 (]: Finished running node test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6
+[0m13:27:57.134838 [debug] [Thread-2 (]: Began running node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:27:57.135381 [info ] [Thread-2 (]: 15 of 17 START test source_not_null_qris_silver_transactions_txn_id ............ [RUN]
+[0m13:27:57.135905 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.not_null_stg_qris_txn_id.a22b53f3c6, now test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d)
+[0m13:27:57.136240 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:27:57.142516 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d"
+[0m13:27:57.143867 [debug] [Thread-2 (]: Began executing node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:27:57.145970 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d"
+[0m13:27:57.147403 [debug] [Thread-2 (]: On test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select txn_id
+from `epoch-ai-data-center`.`qris_analytics`.`silver_transactions`
+where txn_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:27:57.148141 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:27:58.911502 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:e9129a91-608e-4764-a5f5-2584fe321314&page=queryresults
+[0m13:27:59.312485 [debug] [Thread-2 (]: SQL status: OK in 0.400 seconds
+[0m13:28:00.095364 [info ] [Thread-2 (]: 15 of 17 PASS source_not_null_qris_silver_transactions_txn_id .................. [[32mPASS[0m in 2.96s]
+[0m13:28:00.096179 [debug] [Thread-2 (]: Finished running node test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d
+[0m13:28:00.096640 [debug] [Thread-2 (]: Began running node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:28:00.097177 [info ] [Thread-2 (]: 16 of 17 START test unique_mart_user_risk_user_id .............................. [RUN]
+[0m13:28:00.097745 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.source_not_null_qris_silver_transactions_txn_id.51c79e4b7d, now test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8)
+[0m13:28:00.098074 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:28:00.105555 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8"
+[0m13:28:00.106817 [debug] [Thread-2 (]: Began executing node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:28:00.108425 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8"
+[0m13:28:00.109524 [debug] [Thread-2 (]: On test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select user_id as unique_field
+  from `epoch-ai-data-center`.`qris_analytics`.`mart_user_risk`
+  where user_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:28:00.110111 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:28:01.836616 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:fc75621f-2297-4e49-95b6-622510c88aef&page=queryresults
+[0m13:28:02.203096 [debug] [Thread-2 (]: SQL status: OK in 0.366 seconds
+[0m13:28:02.906232 [info ] [Thread-2 (]: 16 of 17 PASS unique_mart_user_risk_user_id .................................... [[32mPASS[0m in 2.81s]
+[0m13:28:02.907028 [debug] [Thread-2 (]: Finished running node test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8
+[0m13:28:02.907447 [debug] [Thread-2 (]: Began running node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:28:02.907853 [info ] [Thread-2 (]: 17 of 17 START test unique_stg_qris_txn_id ..................................... [RUN]
+[0m13:28:02.908326 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.qris_analytics.unique_mart_user_risk_user_id.01abdec3c8, now test.qris_analytics.unique_stg_qris_txn_id.6af380e088)
+[0m13:28:02.908643 [debug] [Thread-2 (]: Began compiling node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:28:02.914103 [debug] [Thread-2 (]: Writing injected SQL for node "test.qris_analytics.unique_stg_qris_txn_id.6af380e088"
+[0m13:28:02.915441 [debug] [Thread-2 (]: Began executing node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:28:02.917832 [debug] [Thread-2 (]: Writing runtime sql for node "test.qris_analytics.unique_stg_qris_txn_id.6af380e088"
+[0m13:28:02.919201 [debug] [Thread-2 (]: On test.qris_analytics.unique_stg_qris_txn_id.6af380e088: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "qris_analytics", "target_name": "dev", "node_id": "test.qris_analytics.unique_stg_qris_txn_id.6af380e088"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select txn_id as unique_field
+  from `epoch-ai-data-center`.`qris_analytics`.`stg_qris`
+  where txn_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m13:28:02.919643 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m13:28:04.738519 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:30a101de-91e1-45c1-b35c-c6e77710c6fd&page=queryresults
+[0m13:28:05.168827 [debug] [Thread-2 (]: SQL status: OK in 0.430 seconds
+[0m13:28:05.914577 [info ] [Thread-2 (]: 17 of 17 PASS unique_stg_qris_txn_id ........................................... [[32mPASS[0m in 3.01s]
+[0m13:28:05.915458 [debug] [Thread-2 (]: Finished running node test.qris_analytics.unique_stg_qris_txn_id.6af380e088
+[0m13:28:05.916745 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m13:28:05.961579 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m13:28:05.961953 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_qris_analytics' was properly closed.
+[0m13:28:05.962189 [debug] [MainThread]: Connection 'test.qris_analytics.unique_stg_qris_txn_id.6af380e088' was properly closed.
+[0m13:28:05.962471 [info ] [MainThread]: 
+[0m13:28:05.962910 [info ] [MainThread]: Finished running 17 data tests in 0 hours 0 minutes and 53.56 seconds (53.56s).
+[0m13:28:05.965854 [debug] [MainThread]: Command end result
+[0m13:28:06.005383 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\manifest.json
+[0m13:28:06.010428 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\semantic_manifest.json
+[0m13:28:06.015060 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\osi_document.json
+[0m13:28:06.025387 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\qris-streaming-lakehouse\qris_analytics\target\run_results.json
+[0m13:28:06.026031 [info ] [MainThread]: 
+[0m13:28:06.026731 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m13:28:06.027270 [info ] [MainThread]: 
+[0m13:28:06.027779 [info ] [MainThread]: Done. PASS=17 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=17
+[0m13:28:06.029248 [debug] [MainThread]: Command `python -m dbt.cli.main test` succeeded at 13:28:06.029118 after 58.30 seconds
+[0m13:28:06.029607 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF76547D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF8FBC730>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002CBF8FBC890>]}
+[0m13:28:06.029982 [debug] [MainThread]: Flushing usage events
+[0m13:28:07.510762 [debug] [MainThread]: An error was encountered while trying to flush usage events

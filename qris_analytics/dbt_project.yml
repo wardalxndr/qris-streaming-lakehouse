@@ -1,0 +1,7 @@
+name: 'qris_analytics'
+version: '1.0.0'
+profile: 'qris_analytics'
+model-paths: ["models"]
+models:
+  qris_analytics:
+    +materialized: view

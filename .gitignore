@@ -3,3 +3,4 @@ silver/*.csv
 data/scored.csv
 __pycache__/
 reports/
+terraform/.terraform/
