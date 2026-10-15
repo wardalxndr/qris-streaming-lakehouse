@@ -27,6 +27,26 @@ python pipeline/consume.py    # clean live -> data/qris_clean_live.csv
 Proven: consumer down during produce → caught up 100,000/100,000, 0 duplicates, 0 lost.
 Roadmap: Spark Structured Streaming + cloud deploy.
 
+## ERP mapping (why this fits System Analyst roles)
+
+```mermaid
+flowchart LR
+    subgraph ERP["ERP (contoh: ScaleOcean)"]
+        POS["Kasir / POS"] --> GUD["Stok & Kas"]
+        GUD --> AKT["AR/AP & Akuntansi"]
+        AKT --> LAP["Laporan"]
+    end
+    subgraph QRIS["QRIS Lakehouse (proyek ini)"]
+        K["Kafka stream"] --> B["Bronze (mentah)"]
+        B --> S["Silver (bersih + quality gate)"]
+        S --> G["Gold marts"]
+        G --> D["Dashboard + skor risiko"]
+    end
+```
+
+Beda domain, pola sama: transaksi berlapis dari kasir sampai laporan.
+Skill mapping proses inilah yang dibawa ke peran System Analyst.
+
 ## Results
 - 100,000 txns, 1.95% fraud (velocity / night / round_amount / new_device)
 - 0 duplicates, 0 corrupt rows after quality gates
