@@ -1,0 +1,10 @@
+{
+  "model": "logistic_regression",
+  "train_rows": 52713,
+  "test_rows": 47287,
+  "threshold": 0.1,
+  "precision": 0.356,
+  "recall": 0.236,
+  "f1": 0.284,
+  "note": "aturan: skor tetap; model: ambang bisa digeser sesuai selera risiko"
+}
