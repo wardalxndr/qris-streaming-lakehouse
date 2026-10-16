@@ -1,4 +1,4 @@
-# Use Cases — siapa pakai apa
+# Use Cases - siapa pakai apa
 
 | ID | Aktor | Kebutuhan | Output sistem | Bukti |
 |---|---|---|---|---|

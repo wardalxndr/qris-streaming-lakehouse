@@ -1,4 +1,4 @@
-# Skema Data & ERD — QRIS Lakehouse
+# Skema Data & ERD - QRIS Lakehouse
 
 ## Silver (fakta mentah bersih): `silver_transactions`
 

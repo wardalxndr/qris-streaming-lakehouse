@@ -1,4 +1,4 @@
-# Alur Proses (Swimlane) — siapa ngapain
+# Alur Proses (Swimlane) - siapa ngapain
 
 ```mermaid
 flowchart TB
@@ -22,6 +22,6 @@ flowchart TB
     S2 -. "gagal gate" .-> T2 --> A3
 ```
 
-Aturan baca: tiap kolom satu aktor. Panah = aliran kerja/data.
+Aturan baca: tiap lapis satu aktor. Panah = aliran kerja/data.
 Jalur putus-putus = jalur exception (data busuk tidak lolos diam-diam,
 tapi lapor).

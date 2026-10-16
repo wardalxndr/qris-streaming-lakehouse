@@ -1,4 +1,4 @@
-# Spesifikasi Fraud — 4 tipologi + metrik
+# Spesifikasi Fraud - 4 tipologi + metrik
 
 ## Tipologi (bahasa bisnis)
 

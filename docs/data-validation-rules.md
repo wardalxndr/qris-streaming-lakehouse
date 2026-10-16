@@ -1,4 +1,4 @@
-# Aturan Validasi Data — Silver Gate
+# Aturan Validasi Data - Silver Gate
 
 Gate di `clean_silver.py`. Baris yang gagal tidak masuk silver,
 semuanya dihitung dan dilaporkan di `quality_report.json`.

@@ -1,4 +1,4 @@
-# QRIS Streaming Lakehouse — Real time Fraud Analytics
+# QRIS Streaming Lakehouse - Real time Fraud Analytics
 
 QRIS is Indonesia's national instant payment rail.
 Simulated QRIS payment stream → bronze/silver/gold lakehouse → fraud marts + dashboard.
@@ -8,6 +8,7 @@ Built to be reproducible: one seed regenerates everything.
 - **Architecture & Data Flow:** [DFD Architecture](docs/architecture.md) | [Swimlane Flows](docs/flows.md) | [Use Cases](docs/use-cases.md)
 - **Business Rules & Data Specs:** [Data Validation Rules](docs/data-validation-rules.md) | [Payload Contract](docs/payload.md) | [Fraud Specifications](docs/fraud-specifications.md)
 - **Database & Edge Cases:** [ERD Schema](docs/erd.md) | [Edge Cases & Error Handling](docs/edge-cases.md)
+- **NFR & Acceptance:** [NFR](docs/nfr.md) | [Acceptance Criteria](docs/acceptance-criteria.md)
 
 ## Problem
 QRIS money moves fast, so fraud must be caught fast. This pipeline answers:
@@ -36,21 +37,21 @@ Roadmap: Spark Structured Streaming + cloud deploy.
 
 ```mermaid
 flowchart LR
-    subgraph ERP["ERP (sistem kasir retail)"]
-        POS["Kasir / POS"] --> GUD["Stok & Kas"]
-        GUD --> AKT["AR/AP & Akuntansi"]
-        AKT --> LAP["Laporan"]
+    subgraph ERP["ERP (retail cashier system)"]
+        POS["Cashier / POS"] --> GUD["Stock & Cash"]
+        GUD --> AKT["AR/AP & Accounting"]
+        AKT --> LAP["Reports"]
     end
-    subgraph QRIS["QRIS Lakehouse (proyek ini)"]
-        K["Kafka stream"] --> B["Bronze (mentah)"]
-        B --> S["Silver (bersih + quality gate)"]
+    subgraph QRIS["QRIS Lakehouse"]
+        K["Kafka stream"] --> B["Bronze (raw)"]
+        B --> S["Silver (clean + quality gate)"]
         S --> G["Gold marts"]
-        G --> D["Dashboard + skor risiko"]
+        G --> D["Dashboard + risk score"]
     end
 ```
 
-Beda domain, pola sama: transaksi berlapis dari kasir sampai laporan.
-Skill mapping proses inilah yang dibawa ke peran System Analyst.
+Same domain pattern, different domain: layered transactions from cashier to report.
+This process mapping skill transfers to the System Analyst role.
 
 ## Results
 - 100,000 txns, 1.95% fraud (velocity / night / round_amount / new_device)
@@ -85,7 +86,7 @@ The Airflow DAG chains the same three tasks after forecast. Honest scope: labels
 ## Forecast
 `pipeline/forecast.py` forecasts daily fraud 7 days ahead (7-day average x weekday
 factor x payday boost, like Walmart holiday features). 7-day backtest: MAE ~81 vs
-~136/day average — naive v1 model, honestly recorded in `reports/forecast_metrics.json`.
+~136/day average - naive v1 model, honestly recorded in `reports/forecast_metrics.json`.
 
 ## Source
 Synthetic data (own generator). Fraud patterns modeled on common e-wallet typologies.

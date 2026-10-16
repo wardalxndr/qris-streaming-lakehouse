@@ -1,4 +1,4 @@
-# Arsitektur & DFD — QRIS Lakehouse
+# Arsitektur & DFD - QRIS Lakehouse
 
 ## Diagram konteks (level 0)
 
