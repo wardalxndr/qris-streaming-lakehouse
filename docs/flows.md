@@ -1,19 +1,22 @@
 # Alur Proses (Swimlane) - siapa ngapain
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph Analis [Analis Fraud]
+        direction TB
         A1["Buka dashboard tiap pagi"]
         A2["Cek merchant bocor dan\nuser high risk"]
         A3["Tindak lanjut investigasi"]
     end
     subgraph Sistem [Pipeline QRIS]
+        direction TB
         S1["Kafka terima event"]
         S2["Silver: dedup +\nquality gate"]
         S3["Gold: 3 mart"]
         S4["Dashboard update"]
     end
     subgraph Scheduler [Scheduler]
+        direction TB
         T1["Trigger harian"]
         T2["Alert kalau gate\ngagal / drift"]
     end
@@ -22,6 +25,6 @@ flowchart TB
     S2 -. "gagal gate" .-> T2 --> A3
 ```
 
-Aturan baca: tiap lapis satu aktor. Panah = aliran kerja/data.
+Aturan baca: tiap kolom satu aktor. Panah = aliran kerja/data.
 Jalur putus-putus = jalur exception (data busuk tidak lolos diam-diam,
 tapi lapor).
