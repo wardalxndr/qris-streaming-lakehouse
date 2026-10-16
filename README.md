@@ -4,6 +4,11 @@ QRIS is Indonesia's national instant payment rail.
 Simulated QRIS payment stream → bronze/silver/gold lakehouse → fraud marts + dashboard.
 Built to be reproducible: one seed regenerates everything.
 
+## System Analyst Documentation
+- **Architecture & Data Flow:** [DFD Architecture](docs/architecture.md) | [Swimlane Flows](docs/flows.md) | [Use Cases](docs/use-cases.md)
+- **Business Rules & Data Specs:** [Data Validation Rules](docs/data-validation-rules.md) | [Payload Contract](docs/payload.md) | [Fraud Specifications](docs/fraud-specifications.md)
+- **Database & Edge Cases:** [ERD Schema](docs/erd.md) | [Edge Cases & Error Handling](docs/edge-cases.md)
+
 ## Problem
 QRIS money moves fast, so fraud must be caught fast. This pipeline answers:
 which merchants leak fraud volume, what fraud types trend daily, which users are high risk.

@@ -4,7 +4,7 @@
 flowchart TB
     subgraph Analis [Analis Fraud]
         A1["Buka dashboard tiap pagi"]
-        A2["Cek merchant bocor &\nuser high risk"]
+        A2["Cek merchant bocor dan\nuser high risk"]
         A3["Tindak lanjut investigasi"]
     end
     subgraph Sistem [Pipeline QRIS]
