@@ -27,7 +27,7 @@ python pipeline/consume.py    # clean live -> data/qris_clean_live.csv
 Proven: consumer down during produce → caught up 100,000/100,000, 0 duplicates, 0 lost.
 Roadmap: Spark Structured Streaming + cloud deploy.
 
-## ERP mapping (why this fits System Analyst roles)
+## ERP mapping
 
 ```mermaid
 flowchart LR
