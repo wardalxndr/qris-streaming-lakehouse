@@ -1,10 +1,14 @@
 """Consumer streaming: baca Kafka -> clean -> tulis silver live + flag velocity.
 State velocity disimpan di memori per jendela 10 menit (demo; produksi pakai state store).
-"""
-import csv, json
+Topik dan idle timeout bisa dioverride lewat env QRIS_TOPIC / QRIS_CONSUMER_TIMEOUT_MS
+(dipakai test E2E; default sama seperti sebelumnya)."""
+import csv, json, os
 from collections import defaultdict
 from datetime import datetime
 from kafka import KafkaConsumer
+
+TOPIC = os.environ.get("QRIS_TOPIC", "qris-txns")
+TIMEOUT_MS = int(os.environ.get("QRIS_CONSUMER_TIMEOUT_MS", "30000"))
 
 seen, dups, bad, velo = set(), 0, 0, 0
 buckets = defaultdict(int)
@@ -13,10 +17,10 @@ w = csv.DictWriter(out, fieldnames=["txn_id", "ts", "user_id", "merchant_id", "m
                                     "amount", "city", "device_id", "channel", "is_fraud", "fraud_type"])
 w.writeheader()
 
-c = KafkaConsumer("qris-txns", bootstrap_servers="localhost:9092",
+c = KafkaConsumer(TOPIC, bootstrap_servers="localhost:9092",
                   value_deserializer=lambda v: json.loads(v.decode()),
                   auto_offset_reset="earliest", enable_auto_commit=True,
-                  consumer_timeout_ms=30000)
+                  consumer_timeout_ms=TIMEOUT_MS)
 n = 0
 for m in c:
     r = m.value

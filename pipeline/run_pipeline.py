@@ -1,12 +1,18 @@
-"""Orkestrasi 1 perintah: bronze -> silver -> gold -> forecast."""
-import subprocess, sys
+"""Orkestrasi 1 perintah: bronze -> silver -> gold -> forecast -> model.
+Script dipanggil lewat path absolut (relatif ke repo), cwd diwariskan dari pemanggil
+supaya data/ dan reports/ tetap mengikuti direktori kerja aktif."""
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
 
 STEPS = [
-    [sys.executable, "pipeline/gen_qris.py"],
-    [sys.executable, "pipeline/clean_silver.py"],
-    [sys.executable, "pipeline/build_gold.py"],
-    [sys.executable, "pipeline/forecast.py"],
-    [sys.executable, "pipeline/model.py"],
+    [sys.executable, str(ROOT / "pipeline/gen_qris.py")],
+    [sys.executable, str(ROOT / "pipeline/clean_silver.py")],
+    [sys.executable, str(ROOT / "pipeline/build_gold.py")],
+    [sys.executable, str(ROOT / "pipeline/forecast.py")],
+    [sys.executable, str(ROOT / "pipeline/model.py")],
 ]
 
 for cmd in STEPS:

@@ -1,4 +1,5 @@
 """Referensi Spark Structured Streaming: logika silver yang sama, versi cluster.
+Sumber: folder data/bronze_stream/ (dibuat oleh pipeline/make_bronze_stream.py).
 Jalan: spark-submit spark/spark_streaming_job.py  (butuh PySpark + Java)
 Lokal default tetap pipeline/run_pipeline.py (tanpa cluster).
 """

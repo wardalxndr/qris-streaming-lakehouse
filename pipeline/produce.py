@@ -1,6 +1,9 @@
-"""Producer: kirim bronze CSV ke topik qris-txns (simulasi event live)."""
-import csv, json, time
+"""Producer: kirim bronze CSV ke topik qris-txns (simulasi event live).
+Topik bisa dioverride lewat env QRIS_TOPIC (dipakai test E2E)."""
+import csv, json, os, time
 from kafka import KafkaProducer
+
+TOPIC = os.environ.get("QRIS_TOPIC", "qris-txns")
 
 p = KafkaProducer(bootstrap_servers="localhost:9092",
                   value_serializer=lambda v: json.dumps(v).encode())
@@ -8,7 +11,7 @@ n = 0
 with open("data/bronze/qris_raw.csv", newline="") as f:
     for r in csv.DictReader(f):
         r["amount"] = int(r["amount"])
-        p.send("qris-txns", value=r)
+        p.send(TOPIC, value=r)
         n += 1
         if n % 20000 == 0:
             print(f"sent {n}")

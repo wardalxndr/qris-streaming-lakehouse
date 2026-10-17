@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install scikit-learn pytest
+
+      - name: Run seeded pipeline
+        run: python pipeline/run_pipeline.py
+
+      - name: Committed data artifacts must reproduce (seed=42)
+        run: >-
+          git diff --ignore-cr-at-eol --exit-code --
+          data/bronze
+          data/qris_clean.csv
+          data/mart_merchant_volume.csv
+          data/mart_fraud_flags.csv
+          data/mart_user_risk.csv
+          data/forecast_next7.csv
+
+      - name: Tests
+        run: python -m pytest -q

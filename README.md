@@ -1,5 +1,7 @@
 # QRIS Streaming Lakehouse - Real time Fraud Analytics
 
+[![CI](https://github.com/wardalxndr/qris-streaming-lakehouse/actions/workflows/ci.yml/badge.svg)](https://github.com/wardalxndr/qris-streaming-lakehouse/actions/workflows/ci.yml)
+
 QRIS is Indonesia's national instant payment rail.
 Simulated QRIS payment stream → bronze/silver/gold lakehouse → fraud marts + dashboard.
 Built to be reproducible: one seed regenerates everything.
@@ -26,12 +28,14 @@ pipeline/gen_qris.py (seed=42, 100k txns, 2% fraud, 4 types)
 ```
 ## Real time (local Kafka, Docker)
 ```
-docker compose -f docker-compose.kafka.yml up -d   # KRaft broker + qris-txns topic (3 partitions)
+docker compose -f docker-compose.kafka.yml up -d   # KRaft broker (auto-creates qris-txns, 3 partitions)
 python pipeline/produce.py    # send 100K events
 python pipeline/consume.py    # clean live -> data/qris_clean_live.csv
 ```
 Proven: consumer down during produce → caught up 100,000/100,000, 0 duplicates, 0 lost.
-Roadmap: Spark Structured Streaming + cloud deploy.
+Spark Structured Streaming reference: `python pipeline/make_bronze_stream.py` then
+`spark-submit spark/spark_streaming_job.py` (needs PySpark + Java; on Windows also
+winutils.exe/HADOOP_HOME). Roadmap: cloud deploy.
 
 ## ERP mapping
 
@@ -59,9 +63,18 @@ This process mapping skill transfers to the System Analyst role.
 - 39 high risk users (score >= 8)
 
 ```
-python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast (one command)
+python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast -> model (one command)
 python pipeline/load_to_bq.py   # BigQuery dataset qris_analytics (needs service-account JSON)
 ```
+
+## Tests
+```powershell
+python -m pytest -q                        # data quality invariants + ML/retrain loop (full pipeline in a temp dir)
+$env:QRIS_KAFKA="1"; python -m pytest -q   # optional: adds the Kafka E2E test (broker must be running)
+```
+CI (`.github/workflows/ci.yml`) re-runs the seeded pipeline, asserts the committed
+data artifacts reproduce byte-for-byte (seed=42), then runs the same suite.
+
 Lakehouse layout (same pattern as a retail Walmart project, upgraded to QRIS):
 `pipeline/` runs locally, `spark/` is a Spark Structured Streaming reference,
 `dags/` a daily Airflow example, `sql/` analytics queries, `data/` outputs, `reports/` metrics.
