@@ -35,7 +35,7 @@ pipeline/gen_qris.py (seed=42, 100k txns, 2% fraud, 4 types)
   -> data/qris_clean.csv
   -> pipeline/build_gold.py         # mart_merchant_volume, mart_fraud_flags, mart_user_risk
   -> pipeline/load_to_bq.py         # BigQuery dataset qris_analytics
-  -> Looker dashboard (3 tiles)
+  -> Looker Studio dashboard (3 tiles): https://datastudio.google.com/reporting/a1e01ca3-4d6d-466e-b8d4-f32954e4b872/page/PvWAG
 ```
 ## Real time (local Kafka, Docker)
 ```
@@ -76,6 +76,14 @@ This process mapping skill transfers to the System Analyst role.
 ```
 python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast -> model (one command)
 ```
+
+## Dashboard (Looker Studio)
+Live report: [QRIS Fraud Analytics](https://datastudio.google.com/reporting/a1e01ca3-4d6d-466e-b8d4-f32954e4b872/page/PvWAG)
+
+Three tiles, each backed by a BigQuery mart:
+1. Merchant volume (leak watch) - `mart_merchant_volume`
+2. Daily fraud by type - `mart_fraud_flags`
+3. High risk users (score >= 8) - `mart_user_risk`
 
 ## BigQuery load (optional, needs GCP)
 `pipeline/load_to_bq.py` loads silver into the `qris_analytics` dataset
