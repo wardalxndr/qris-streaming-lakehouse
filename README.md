@@ -6,6 +6,17 @@ QRIS is Indonesia's national instant payment rail.
 Simulated QRIS payment stream → bronze/silver/gold lakehouse → fraud marts + dashboard.
 Built to be reproducible: one seed regenerates everything.
 
+## Quickstart
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install scikit-learn pytest        # light path: local pipeline + tests only
+python pipeline/run_pipeline.py        # seed=42 -> data/*.csv + reports/*.json
+python -m pytest -q                    # 7 tests, 1 skipped (Kafka)
+```
+Full `requirements.txt` adds the optional heavy paths: Airflow (DAG), PySpark
+(streaming job) and google-cloud-bigquery (BigQuery load).
+
 ## System Analyst Documentation
 - **Architecture & Data Flow:** [DFD Architecture](docs/architecture.md) | [Swimlane Flows](docs/flows.md) | [Use Cases](docs/use-cases.md)
 - **Business Rules & Data Specs:** [Data Validation Rules](docs/data-validation-rules.md) | [Payload Contract](docs/payload.md) | [Fraud Specifications](docs/fraud-specifications.md)
@@ -73,7 +84,7 @@ python -m pytest -q                        # data quality invariants + ML/retrai
 $env:QRIS_KAFKA="1"; python -m pytest -q   # optional: adds the Kafka E2E test (broker must be running)
 ```
 CI (`.github/workflows/ci.yml`) re-runs the seeded pipeline, asserts the committed
-data artifacts reproduce byte-for-byte (seed=42), then runs the same suite.
+data artifacts reproduce on a clean checkout (seed=42), then runs the same suite.
 
 Lakehouse layout (same pattern as a retail Walmart project, upgraded to QRIS):
 `pipeline/` runs locally, `spark/` is a Spark Structured Streaming reference,
