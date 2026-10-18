@@ -23,6 +23,13 @@ Full `requirements.txt` adds the optional heavy paths: Airflow (DAG), PySpark
 - **Database & Edge Cases:** [ERD Schema](docs/erd.md) | [Edge Cases & Error Handling](docs/edge-cases.md)
 - **NFR & Acceptance:** [NFR](docs/nfr.md) | [Acceptance Criteria](docs/acceptance-criteria.md)
 
+## Design decisions (ADRs)
+Every non-obvious engineering choice is documented in [docs/adr](docs/adr/README.md) with its context, the honest downsides and the alternatives that were rejected. Highlights:
+- [0001](docs/adr/0001-two-ingestion-paths.md): why the repo ships a Kafka stream path AND a seeded batch path.
+- [0003](docs/adr/0003-seeded-artifacts-and-ci-repro-gate.md): why artifacts are committed and CI diffs them on a clean checkout.
+- [0006](docs/adr/0006-champion-challenger-retrain-gate.md): why the retrain gate exists, and why the first challenger was NOT promoted.
+- [0007](docs/adr/0007-partition-and-cluster.md): why each mart is partitioned/clustered the way it is.
+
 ## Problem
 QRIS money moves fast, so fraud must be caught fast. This pipeline answers:
 which merchants leak fraud volume, what fraud types trend daily, which users are high risk.
@@ -85,6 +92,8 @@ Three tiles, each backed by a BigQuery mart:
 2. Daily fraud by type - `mart_fraud_flags`
 3. High risk users (score >= 8) - `mart_user_risk`
 
+Tile design, verified numbers and the refresh steps: [docs/dashboard.md](docs/dashboard.md).
+
 ## BigQuery load (optional, needs GCP)
 `pipeline/load_to_bq.py` loads silver into the `qris_analytics` dataset
 (table `silver_transactions`); gold marts are built by dbt, not this script.
@@ -95,6 +104,24 @@ python pipeline/load_to_bq.py
 ```
 Keep the service-account JSON outside the repo and never commit it
 (`.gitignore` already excludes `secrets/` and `*.sa.json`).
+
+## Cost (measured, not estimated)
+All numbers below come from the actual runs of this repo (BigQuery US on-demand pricing).
+
+| Item | Measured usage | Cost |
+|---|---|---|
+| Batch load, 100k rows, local file | 1 load job | $0.00 (batch loads are free) |
+| `dbt run` (1 view + 3 marts) | 8.4 MiB scanned | ~$0.00005 |
+| Storage (silver + 3 marts) | ~15 MB active | ~$0.0003 / month |
+| Looker Studio report | 1 report, 3 tiles | $0.00 |
+| Kafka + Airflow | self-hosted Docker | $0.00 |
+| **Total cloud spend** | | **under $0.01 / month** |
+
+What it would cost to make the stream fully cloud-native (us-central1 list
+prices, ballpark): Pub/Sub at this volume stays inside the free 10 GB/month,
+while a minimal always-on Dataflow streaming job (2 vCPU, 8 GB) is roughly
+$165/month just to exist. That is the honest reason the streaming demo is
+local: the mechanics are transferable, the bill is not.
 
 ## Tests
 ```powershell
@@ -129,6 +156,14 @@ The Airflow DAG chains the same three tasks after forecast. Honest scope: labels
 `pipeline/forecast.py` forecasts daily fraud 7 days ahead (7-day average x weekday
 factor x payday boost, like Walmart holiday features). 7-day backtest: MAE ~81 vs
 ~136/day average - naive v1 model, honestly recorded in `reports/forecast_metrics.json`.
+
+## Troubleshooting
+Real issues hit while building this on Windows, and their fixes:
+- `Python was not found` for `python`/`pip`: that is the WindowsApps stub. Use `py -3.11 -m venv .venv`, or `uv run --python 3.11 --with <pkg> python <script>` for one-off runs.
+- Spark job fails with `HADOOP_HOME and hadoop.home.dir are unset`: Spark on Windows needs winutils.exe. Run the Spark reference job on Linux/WSL/CI; the batch and Kafka paths do not need it.
+- Kafka test skipped: it only runs when the broker is up AND `QRIS_KAFKA=1` is set. Start `docker compose -f docker-compose.kafka.yml up -d` first.
+- `dbt debug` cannot find a profile: pass `--profiles-dir`, or copy `qris_analytics/profiles.example.yml` to `~/.dbt/profiles.yml` and fill it in.
+- BigQuery `403 PERMISSION_DENIED`: enable billing on the project and give the service account BigQuery Data Editor + BigQuery Job User.
 
 ## Source
 Synthetic data (own generator). Fraud patterns modeled on common e-wallet typologies.
