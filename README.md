@@ -75,8 +75,18 @@ This process mapping skill transfers to the System Analyst role.
 
 ```
 python pipeline/run_pipeline.py   # generate -> silver -> gold -> forecast -> model (one command)
-python pipeline/load_to_bq.py   # BigQuery dataset qris_analytics (needs service-account JSON)
 ```
+
+## BigQuery load (optional, needs GCP)
+`pipeline/load_to_bq.py` loads silver into the `qris_analytics` dataset
+(table `silver_transactions`); gold marts are built by dbt, not this script.
+```powershell
+$env:GCP_PROJECT_ID="<your-gcp-project>"
+$env:GOOGLE_APPLICATION_CREDENTIALS="C:\path\to\service-account.json"
+python pipeline/load_to_bq.py
+```
+Keep the service-account JSON outside the repo and never commit it
+(`.gitignore` already excludes `secrets/` and `*.sa.json`).
 
 ## Tests
 ```powershell
@@ -114,3 +124,6 @@ factor x payday boost, like Walmart holiday features). 7-day backtest: MAE ~81 v
 
 ## Source
 Synthetic data (own generator). Fraud patterns modeled on common e-wallet typologies.
+
+## License
+MIT - see [LICENSE](LICENSE).

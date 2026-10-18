@@ -15,3 +15,7 @@ terraform/.terraform/
 terraform/terraform.tfstate
 terraform/terraform.tfstate.*
 terraform/crash.log
+
+# GCP service-account keys (never commit)
+secrets/
+*.sa.json

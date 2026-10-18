@@ -1,17 +1,19 @@
 """Load silver CSV ke BigQuery (dataset qris_analytics, tabel silver_transactions).
 
 Creds 100% env, tanpa hardcode:
-  set GCP_PROJECT_ID=epoch-ai-data-center
+  set GCP_PROJECT_ID=your-gcp-project
   set GOOGLE_APPLICATION_CREDENTIALS=C:\\path\\key.json
-Jalankan dari root repo:  python pipeline/load_to_bq.py
+Jalankan dari mana saja (path sudah absolut):  python pipeline/load_to_bq.py
 
 Mart gold DIBANGUN dbt (qris_analytics/models), bukan script ini.
 Versi lama file ini yang load mart CSV langsung sudah pensiun.
 """
 import os
+from pathlib import Path
 
 from google.cloud import bigquery
 
+DATA = Path(__file__).resolve().parents[1] / "data"
 PROJECT = os.environ["GCP_PROJECT_ID"]
 DATASET = "qris_analytics"
 TABLE = "silver_transactions"
@@ -41,7 +43,7 @@ def main():
         write_disposition="WRITE_TRUNCATE",
     )
     table = f"{PROJECT}.{DATASET}.{TABLE}"
-    with open("data/qris_clean.csv", "rb") as f:
+    with open(DATA / "qris_clean.csv", "rb") as f:
         bq.load_table_from_file(f, table, job_config=job_cfg).result()
     print(table, "->", bq.get_table(table).num_rows, "rows")
 
