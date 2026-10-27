@@ -1,7 +1,11 @@
 # Aturan Validasi Data - Silver Gate
 
-Gate di `clean_silver.py`. Baris yang gagal tidak masuk silver,
-semuanya dihitung dan dilaporkan di `quality_report.json`.
+Gate di `clean_silver.py`, urutan cek: validasi dulu (R2 amount, R3 ts),
+baru R1 dedup: biarkan kategori reject tidak saling makan.
+Baris yang gagal tidak masuk silver dan semuanya terhitung di
+`reports/silver_rejects.json` (merge ke `quality_report.json`).
+Generator menyelipkan ~1% baris kotor (300 duplikat, 350 amount rusak,
+200 ts rusak) supaya gate ini terbukti jalan, bukan kosong di data bersih.
 
 | # | Aturan bisnis | Aksi | Kenapa |
 |---|---|---|---|

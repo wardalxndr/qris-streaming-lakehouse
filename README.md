@@ -36,9 +36,9 @@ which merchants leak fraud volume, what fraud types trend daily, which users are
 
 ## Architecture (simulated stream + batch)
 ```
-pipeline/gen_qris.py (seed=42, 100k txns, 2% fraud, 4 types)
+pipeline/gen_qris.py (seed=42, 100k events, ~2% fraud, ~1% dirty rows)
   -> data/bronze/qris_raw.csv       # raw stream landing
-  -> pipeline/clean_silver.py       # dedup, validate, velocity window flags
+  -> pipeline/clean_silver.py       # validate, dedup, velocity flags -> reject accounting
   -> data/qris_clean.csv
   -> pipeline/build_gold.py         # mart_merchant_volume, mart_fraud_flags, mart_user_risk
   -> pipeline/load_to_bq.py         # BigQuery dataset qris_analytics
@@ -50,7 +50,10 @@ docker compose -f docker-compose.kafka.yml up -d   # KRaft broker (auto-creates 
 python pipeline/produce.py    # send 100K events
 python pipeline/consume.py    # clean live -> data/qris_clean_live.csv
 ```
-Proven: consumer down during produce → caught up 100,000/100,000, 0 duplicates, 0 lost.
+Proven with ~1% dirty rows in the stream: the consumer starts only after
+produce finishes → catch-up accounts for every event:
+99,150 clean + 300 duplicates + 550 invalid = 100,000, 0 lost
+(reject counters printed by the consumer and asserted by the E2E test).
 Spark Structured Streaming reference: `python pipeline/make_bronze_stream.py` then
 `spark-submit spark/spark_streaming_job.py` (needs PySpark + Java; on Windows also
 winutils.exe/HADOOP_HOME). Roadmap: cloud deploy.
@@ -76,8 +79,9 @@ Same domain pattern, different domain: layered transactions from cashier to repo
 This process mapping skill transfers to the System Analyst role.
 
 ## Results
-- 100,000 txns, 1.95% fraud (velocity / night / round_amount / new_device)
-- 0 duplicates, 0 corrupt rows after quality gates
+- 100,000 events, 1.95% fraud among valid rows (velocity / night / round_amount / new_device)
+- quality gate rejected 850 dirty rows: 300 duplicates, 350 bad amounts, 200 bad
+  timestamps; 99,150 kept, every row accounted (`reports/silver_rejects.json`)
 - 39 high risk users (score >= 8)
 
 ```
@@ -154,8 +158,8 @@ The Airflow DAG chains the same three tasks after forecast. Honest scope: labels
 
 ## Forecast
 `pipeline/forecast.py` forecasts daily fraud 7 days ahead (7-day average x weekday
-factor x payday boost, like Walmart holiday features). 7-day backtest: MAE ~81 vs
-~136/day average - naive v1 model, honestly recorded in `reports/forecast_metrics.json`.
+factor x payday boost, like Walmart holiday features). 7-day backtest: MAE 80.07 vs
+134.9/day average - naive v1 model, honestly recorded in `reports/forecast_metrics.json`.
 
 ## Troubleshooting
 Real issues hit while building this on Windows, and their fixes:

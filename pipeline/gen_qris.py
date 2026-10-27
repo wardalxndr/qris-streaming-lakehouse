@@ -1,8 +1,14 @@
 import csv, random
 
 SEED = 42
-N = 100_000
+N = 100_000  # total event: baris valid + baris kotor
 FRAUD_RATE = 0.02
+# ~1% baris kotor supaya quality gate di silver beneran pernah menolak,
+# bukan cuma klaim. Kontrak: dihitung persis di tests/test_data_quality.py.
+DIRTY_DUP = 300      # txn_id persis sama dengan baris lain -> ketangkap dedup
+DIRTY_AMOUNT = 350   # amount kosong / negatif -> reject validasi amount
+DIRTY_TS = 200       # ts tidak bisa diparse -> reject validasi ts
+
 CATS = ["kuliner", "ritel", "transport"]
 CITIES = ["Jakarta", "Surabaya", "Bandung", "Medan", "Semarang"]
 
@@ -36,18 +42,43 @@ def fraud_txn():
     return r  # velocity: label aja dulu, deteksinya di silver nanti pakai window
 
 
+def dirty_rows(clean: list[list]) -> list[list]:
+    """Baris kotor deterministik. Sumber diambil dari rentang index yang
+    tidak tumpang tindih supaya kategori reject tidak saling makan
+    (tanpa itu, salinan amount hancur bisa terhitung sebagai dup)."""
+    out = []
+    for i in range(DIRTY_DUP):
+        out.append(list(clean[i]))  # salinan persis -> txn_id dobel
+    for i in range(DIRTY_AMOUNT):
+        r = list(clean[DIRTY_DUP + i])
+        r[5] = "" if i % 2 == 0 else "-500"
+        out.append(r)
+    for i in range(DIRTY_TS):
+        r = list(clean[DIRTY_DUP + DIRTY_AMOUNT + i])
+        # hour 25-29 = di luar range %H (0-23), pasti gagal diparse
+        r[1] = "2026-09-32 08:99" if i % 2 == 0 else f"2026-09-10 {25 + (i % 5)}:15"
+        out.append(r)
+    return out
+
+
 def main():
     cols = ["txn_id", "ts", "user_id", "merchant_id", "merchant_cat", "amount",
             "city", "device_id", "channel", "is_fraud", "fraud_type"]
+    n_valid = N - DIRTY_DUP - DIRTY_AMOUNT - DIRTY_TS
     n_fraud = 0
+    clean = []
+    for _ in range(n_valid):
+        fraud = rng.random() < FRAUD_RATE
+        row = fraud_txn() if fraud else normal_txn()
+        n_fraud += fraud
+        clean.append(row)
+    rows = clean + dirty_rows(clean)
     with open("data/bronze/qris_raw.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(cols)
-        for _ in range(N):
-            fraud = rng.random() < FRAUD_RATE
-            w.writerow(fraud_txn() if fraud else normal_txn())
-            n_fraud += fraud
-    print(f"total={N} fraud={n_fraud} ({n_fraud / N:.2%})")
+        w.writerows(rows)
+    print(f"total={N} valid={n_valid} fraud={n_fraud} ({n_fraud / n_valid:.2%} "
+          f"dari baris valid) dirty: {DIRTY_DUP} dup, {DIRTY_AMOUNT} amount, {DIRTY_TS} ts")
 
 
 if __name__ == "__main__":

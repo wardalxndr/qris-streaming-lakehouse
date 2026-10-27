@@ -13,6 +13,9 @@ PIPELINE = ROOT / "pipeline"
 BRONZE_COLS = ["txn_id", "ts", "user_id", "merchant_id", "merchant_cat", "amount",
                "city", "device_id", "channel", "is_fraud", "fraud_type"]
 
+# Kontrak baris kotor dari gen_qris.py; persis, dihitung di test.
+DIRTY_DUP, DIRTY_AMOUNT, DIRTY_TS = 300, 350, 200
+
 
 def run_script(script: str, cwd: Path, env: dict[str, str] | None = None) -> subprocess.CompletedProcess:
     result = subprocess.run(

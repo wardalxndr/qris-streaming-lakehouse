@@ -5,6 +5,7 @@ __pycache__/
 .pytest_cache/
 
 data/scored.csv
+data/qris_clean_live.csv
 data/bronze_stream/
 
 logs/

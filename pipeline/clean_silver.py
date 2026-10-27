@@ -1,7 +1,9 @@
 """Silver: bersihin bronze + deteksi velocity + laporan kualitas.
 Kecepatan = jumlah transaksi 1 user dalam 10 menit >= 5 -> flag.
+Urutan cek: validasi dulu (amount, ts), baru dedup, supaya kategori reject
+tidak saling makan. Semua reject tercatat di reports/silver_rejects.json.
 """
-import csv
+import csv, json, os
 from collections import defaultdict
 from datetime import datetime
 
@@ -22,10 +24,6 @@ def main():
     rows = []
     with open("data/bronze/qris_raw.csv", newline="") as f:
         for r in csv.DictReader(f):
-            if r["txn_id"] in seen:  # buang duplikat
-                dups += 1
-                continue
-            seen.add(r["txn_id"])
             try:
                 amt = int(r["amount"])
             except ValueError:
@@ -37,6 +35,10 @@ def main():
             if ts is None:
                 bad_ts += 1
                 continue
+            if r["txn_id"] in seen:  # buang duplikat
+                dups += 1
+                continue
+            seen.add(r["txn_id"])
             r["amount"] = amt
             r["_ts"] = ts
             rows.append(r)
@@ -63,6 +65,11 @@ def main():
         w.writeheader()
         for r in rows:
             w.writerow({c: r[c] for c in cols})
+
+    os.makedirs("reports", exist_ok=True)
+    with open("reports/silver_rejects.json", "w") as f:
+        json.dump({"kept": len(rows), "dups": dups, "bad_amount": bad_amount,
+                   "bad_ts": bad_ts, "velocity_new_flags": velo_hits}, f, indent=2)
 
     print(f"clean={len(rows)} dups={dups} bad_amount={bad_amount} "
           f"bad_ts={bad_ts} velocity_new_flags={velo_hits}")

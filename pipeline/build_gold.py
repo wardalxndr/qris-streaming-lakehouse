@@ -49,6 +49,10 @@ def main():
     rep = {"total": len(rows),
            "merchants": len({r["merchant_id"] for r in rows}),
            "high_risk_users": sum(1 for s in score.values() if s >= 8)}
+    try:  # reject accounting dari silver, satu tempat untuk audit
+        rep["silver_rejects"] = json.load(open("reports/silver_rejects.json"))
+    except FileNotFoundError:
+        pass
     json.dump(rep, open("reports/quality_report.json", "w"), indent=2)
     print(rep)
 

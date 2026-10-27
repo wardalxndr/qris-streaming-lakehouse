@@ -9,11 +9,12 @@ Topik unik per run supaya sisa data dari run sebelumnya tidak mengacaukan hitung
 """
 import csv
 import os
+import re
 import uuid
 
 import pytest
 
-from _util import run_script
+from _util import DIRTY_AMOUNT, DIRTY_DUP, DIRTY_TS, run_script
 
 pytestmark = pytest.mark.skipif(
     os.environ.get("QRIS_KAFKA") != "1",
@@ -29,8 +30,14 @@ def test_consumer_catches_up_without_losing_events(workspace):
     assert "DONE sent=100000" in produced.stdout
 
     consumed = run_script("consume.py", workspace, env=env)
-    assert "DONE clean=100000 dups=0 bad=0" in consumed.stdout
+    m = re.search(r"DONE clean=(\d+) dups=(\d+) bad_amount=(\d+) bad_ts=(\d+)", consumed.stdout)
+    assert m is not None, f"ringkasan consumer tidak ditemukan:\n{consumed.stdout}"
+    clean, dups, bad_amount, bad_ts = map(int, m.groups())
+    # setiap event terhitung: masuk atau ditolak, tidak ada yang hilang diam-diam
+    assert clean + dups + bad_amount + bad_ts == 100_000
+    assert dups >= DIRTY_DUP and bad_amount >= DIRTY_AMOUNT and bad_ts >= DIRTY_TS, \
+        "consumer harus menolak baris kotor yang sama seperti silver"
 
     rows = list(csv.DictReader((workspace / "data" / "qris_clean_live.csv").open(newline="")))
-    assert len(rows) == 100_000
+    assert len(rows) == clean
     assert len({r["txn_id"] for r in rows}) == len(rows)

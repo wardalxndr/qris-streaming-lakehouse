@@ -10,7 +10,8 @@ p = KafkaProducer(bootstrap_servers="localhost:9092",
 n = 0
 with open("data/bronze/qris_raw.csv", newline="") as f:
     for r in csv.DictReader(f):
-        r["amount"] = int(r["amount"])
+        # amount dibiarkan string apa adanya; konversi+validasi di consumer,
+        # supaya baris kotor ("" / negatif) ikut terkirim dan ditolak di sana.
         p.send(TOPIC, value=r)
         n += 1
         if n % 20000 == 0:

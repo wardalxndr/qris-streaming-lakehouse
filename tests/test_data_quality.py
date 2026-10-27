@@ -1,8 +1,35 @@
-"""Kontrak data: generator deterministik, silver bersih, mart konsisten, forecast wajar."""
+"""Kontrak data: generator deterministik + baris kotor, silver menolak yang kotor,
+mart konsisten dengan silver, forecast wajar."""
 import json
 from datetime import datetime, timedelta
 
-from _util import BRONZE_COLS, read_rows, run_script
+from _util import BRONZE_COLS, DIRTY_AMOUNT, DIRTY_DUP, DIRTY_TS, read_rows, run_script
+
+
+def _silver_rules(bronze):
+    """Replikasi aturan clean_silver.py (validasi dulu, baru dedup):
+    return (kept, dups, bad_amount, bad_ts)."""
+    seen, kept = set(), []
+    dups = bad_amount = bad_ts = 0
+    for r in bronze:
+        try:
+            amt = int(r["amount"])
+        except ValueError:
+            amt = -1
+        if amt <= 0:
+            bad_amount += 1
+            continue
+        try:
+            datetime.strptime(r["ts"], "%Y-%m-%d %H:%M")
+        except ValueError:
+            bad_ts += 1
+            continue
+        if r["txn_id"] in seen:
+            dups += 1
+            continue
+        seen.add(r["txn_id"])
+        kept.append(r)
+    return kept, dups, bad_amount, bad_ts
 
 
 def test_generator_is_seeded_and_valid(tmp_path):
@@ -20,10 +47,15 @@ def test_generator_is_seeded_and_valid(tmp_path):
     assert len(rows) == 100_000
     assert list(rows[0].keys()) == BRONZE_COLS
 
-    fraud_rate = sum(int(r["is_fraud"]) for r in rows) / len(rows)
+    kept, dups, bad_amount, bad_ts = _silver_rules(rows)
+    assert (dups, bad_amount, bad_ts) == (DIRTY_DUP, DIRTY_AMOUNT, DIRTY_TS), \
+        "kontrak baris kotor berubah: gen_qris.py dan test ini harus diupdate bareng"
+    assert len(kept) == 100_000 - DIRTY_DUP - DIRTY_AMOUNT - DIRTY_TS
+
+    fraud_rate = sum(int(r["is_fraud"]) for r in kept) / len(kept)
     assert 0.015 <= fraud_rate <= 0.025, f"fraud rate {fraud_rate:.3%} jauh dari target 2%"
 
-    for r in rows:
+    for r in kept:
         assert int(r["amount"]) > 0
         datetime.strptime(r["ts"], "%Y-%m-%d %H:%M")
 
@@ -32,7 +64,18 @@ def test_silver_cleans_without_losing_valid_rows(workspace):
     bronze = read_rows(workspace / "data" / "bronze" / "qris_raw.csv")
     silver = read_rows(workspace / "data" / "qris_clean.csv")
 
-    assert len(silver) == len(bronze), "baris valid tidak boleh hilang di silver"
+    kept, dups, bad_amount, bad_ts = _silver_rules(bronze)
+    assert [r["txn_id"] for r in silver] == [r["txn_id"] for r in kept], \
+        "silver harus persis baris valid bronze (urutan sama), yang kotor ditolak"
+    assert len(silver) + dups + bad_amount + bad_ts == len(bronze), \
+        "setiap baris bronze harus terhitung: disimpan atau ditolak"
+
+    rejects = json.loads((workspace / "reports" / "silver_rejects.json").read_text())
+    assert rejects["kept"] == len(silver)
+    assert rejects["dups"] == DIRTY_DUP
+    assert rejects["bad_amount"] == DIRTY_AMOUNT
+    assert rejects["bad_ts"] == DIRTY_TS
+
     ids = [r["txn_id"] for r in silver]
     assert len(ids) == len(set(ids)), "txn_id harus unik setelah dedup"
     for r in silver:

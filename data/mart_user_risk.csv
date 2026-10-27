@@ -109,11 +109,9 @@ U03729,6,medium
 U04518,6,medium
 U02979,6,medium
 U03996,6,medium
-U00673,6,medium
 U01313,6,medium
 U04632,6,medium
 U01286,6,medium
-U00058,6,medium
 U04868,6,medium
 U03806,6,medium
 U00106,6,medium
@@ -137,7 +135,6 @@ U01037,6,medium
 U01117,6,medium
 U03230,6,medium
 U03317,6,medium
-U04029,6,medium
 U04384,6,medium
 U03831,6,medium
 U00226,6,medium
@@ -160,7 +157,6 @@ U04866,6,medium
 U00359,6,medium
 U03868,6,medium
 U01195,6,medium
-U02223,6,medium
 U04911,6,medium
 U04741,6,medium
 U04041,5,medium
@@ -226,7 +222,6 @@ U03589,5,medium
 U04721,5,medium
 U03979,5,medium
 U04285,5,medium
-U04436,5,medium
 U03832,5,medium
 U00827,4,medium
 U04592,4,medium
@@ -245,7 +240,6 @@ U01742,4,medium
 U02681,4,medium
 U00470,4,medium
 U04037,4,medium
-U03188,4,medium
 U01470,4,medium
 U02009,4,medium
 U01901,4,medium
@@ -294,8 +288,10 @@ U02705,4,medium
 U00847,4,medium
 U02129,4,medium
 U04256,4,medium
+U00673,4,medium
 U01179,4,medium
 U03862,4,medium
+U00058,4,medium
 U03811,4,medium
 U04313,4,medium
 U03268,4,medium
@@ -386,6 +382,7 @@ U03715,4,medium
 U02868,4,medium
 U02497,4,medium
 U03886,4,medium
+U04029,4,medium
 U04310,4,medium
 U01466,4,medium
 U00679,4,medium
@@ -495,6 +492,7 @@ U02336,4,medium
 U04919,4,medium
 U04215,4,medium
 U03125,4,medium
+U02223,4,medium
 U03738,4,medium
 U02261,4,medium
 U03719,4,medium
@@ -618,7 +616,6 @@ U03503,4,medium
 U04562,4,medium
 U04825,4,medium
 U03698,4,medium
-U03109,4,medium
 U03329,4,medium
 U01511,4,medium
 U01656,4,medium
@@ -628,8 +625,6 @@ U00879,4,medium
 U02877,4,medium
 U01826,4,medium
 U01564,4,medium
-U04187,4,medium
-U00887,4,medium
 U04643,3,low
 U02311,3,low
 U01942,3,low
@@ -912,6 +907,7 @@ U04771,3,low
 U03349,3,low
 U01320,3,low
 U04247,3,low
+U04436,3,low
 U01897,3,low
 U02197,3,low
 U04682,3,low
@@ -931,10 +927,6 @@ U01795,3,low
 U03926,3,low
 U01444,3,low
 U01641,3,low
-U04563,3,low
-U02740,3,low
-U03680,3,low
-U03600,3,low
 U01750,2,low
 U04340,2,low
 U00179,2,low
@@ -962,6 +954,7 @@ U01126,2,low
 U02351,2,low
 U01830,2,low
 U00184,2,low
+U03188,2,low
 U03011,2,low
 U01560,2,low
 U00221,2,low
@@ -1591,6 +1584,7 @@ U04182,2,low
 U02555,2,low
 U01167,2,low
 U04514,2,low
+U03109,2,low
 U00094,2,low
 U00379,2,low
 U02422,2,low
@@ -1609,8 +1603,3 @@ U02460,2,low
 U03676,2,low
 U04772,2,low
 U04769,2,low
-U02190,2,low
-U02953,2,low
-U01454,2,low
-U02397,2,low
-U04404,2,low

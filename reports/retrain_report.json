@@ -1,11 +1,11 @@
 {
   "asof": "2026-09-28 23:58",
-  "train_rows": 52713,
-  "holdout_rows": 47287,
-  "challenger_f1": 0.284,
+  "train_rows": 52263,
+  "holdout_rows": 46887,
+  "challenger_f1": 0.28,
   "challenger_threshold": 0.1,
   "champion_version": "seed",
-  "champion_f1": 0.284,
+  "champion_f1": 0.28,
   "min_gain": 0.005,
   "promoted": false,
   "model_file": null
