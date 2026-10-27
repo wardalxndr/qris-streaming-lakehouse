@@ -6,8 +6,10 @@ Dokumen ini jujur: apa yang ditangani, apa yang belum.
 
 Producer yang retry mengirim `txn_id` yang sama dua kali. Silver menyimpan
 set `txn_id` yang sudah lewat dan membuang duplikat (`clean_silver.py`).
-Terbukti: consumer dimatikan saat produce 100K event, catch up 100.000 /
-100.000, 0 duplikat, 0 hilang.
+Terbukti: consumer dimatikan saat produce 100K event (termasuk 300 dup,
+350 amount rusak, 200 ts rusak), catch up terhitung: 99.150 clean +
+850 ditolak = 100.000, 0 hilang. Bukan lagi "0 duplikat", tapi
+"duplikat ditangkap dan tetap terhitung".
 
 ## 2. Late-arriving data (label telat) - DITANGANI SEBAGIAN
 

@@ -15,8 +15,12 @@ exactly-once across a CSV sink is not achievable without transactions.
   (`docker-compose.kafka.yml`), topic `qris-txns` with 3 partitions created
   on startup.
 - Producer: `acks=all` with retries, i.e. at-least-once.
-- Consumer: writes raw events; dedup and validation happen in silver on
-  `transaction_id`, so replays are idempotent.
+- Consumer: applies the same rules as silver live (validation before dedup,
+  `consume.py` -> `qris_clean_live.csv`); the batch silver replays the same
+  rules, so replays are idempotent on `txn_id`.
+  Amendment (Oct 27, 2026): the stream carries ~1% dirty rows; the consumer
+  rejects and counts them (`clean + dup + bad_amount + bad_ts == sent`),
+  matching silver reject-by-category accounting.
 
 ## Consequences
 

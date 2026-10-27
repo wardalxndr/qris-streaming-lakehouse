@@ -6,6 +6,7 @@ from kafka import KafkaProducer
 TOPIC = os.environ.get("QRIS_TOPIC", "qris-txns")
 
 p = KafkaProducer(bootstrap_servers="localhost:9092",
+                  acks="all", retries=5,  # at-least-once, sesuai ADR 0002
                   value_serializer=lambda v: json.dumps(v).encode())
 n = 0
 with open("data/bronze/qris_raw.csv", newline="") as f:

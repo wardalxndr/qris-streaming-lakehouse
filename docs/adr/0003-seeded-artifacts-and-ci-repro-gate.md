@@ -10,7 +10,9 @@ dashboard can be trusted (e.g. 39 high-risk users).
 
 ## Decision
 
-- The generator is fully seeded: `seed=42`, 100k transactions, 2% fraud.
+- The generator is fully seeded: `seed=42`, 100k events, ~2% fraud. Since
+  Oct 27, 2026 it also injects ~1% dirty rows (300 duplicates, 350 bad
+  amounts, 200 bad timestamps) so the quality gate is exercised, not idle.
 - Outputs (`data/*.csv`, `reports/*.json`) are committed to the repo.
 - CI (`.github/workflows/ci.yml`) re-runs the pipeline on a clean checkout
   and fails if the regenerated files differ from the committed ones:

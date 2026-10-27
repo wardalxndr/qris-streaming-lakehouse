@@ -12,10 +12,10 @@ Traceability: UC-01 sampai UC-06 sama persis dengan `docs/use-cases.md`.
 
 Cek:
 1. `SELECT COUNT(*) FROM qris_analytics.mart_merchant_volume` > 0 dan tidak double count vs silver
-2. `SELECT SUM(txn_count) FROM mart_merchant_volume` = 100.000 setelah dedup
+2. `SELECT SUM(txn_count) FROM mart_merchant_volume` = 99.150 (baris valid silver)
 3. Dashboard 3 tile bisa dibuka dari link README tanpa error
 
-Lolos kalau: angka 1 dan 2 sama dengan `reports/quality_report.json` total 100.000.
+Lolos kalau: angka 1 dan 2 sama dengan `reports/quality_report.json` total silver 99.150 (+ 850 reject tercatat di `silver_rejects`).
 
 ## UC-02: Analis tau user mana yang bahaya
 
@@ -41,7 +41,7 @@ Cek:
 2. Seed 42 tercatat di `pipeline/gen_qris.py`
 3. Satu perintah saja, tidak ada step manual tersembunyi
 
-Lolos kalau: total tetap 100.000 dan fraud rate sekitar 1.95 persen.
+Lolos kalau: baris valid tetap 99.150 (total event 100.000 termasuk 850 baris kotor) dan fraud rate sekitar 1.95 persen dari baris valid.
 
 ## UC-04: Data busuk ketahuan bukan lolos diam diam
 
@@ -51,7 +51,7 @@ Lolos kalau: total tetap 100.000 dan fraud rate sekitar 1.95 persen.
 
 Cek:
 1. `SELECT COUNT(DISTINCT txn_id) = COUNT(*)` di silver, artinya 0 duplikat
-2. `reports/quality_report.json` ada dan terbaca
+2. `reports/silver_rejects.json` tercatat: dups 300, bad_amount 350, bad_ts 200
 3. Run gagal keras kalau kontrak payload dilanggar, tidak lanjut ke gold
 
 Lolos kalau: cek 1 benar dan quality report konsisten.

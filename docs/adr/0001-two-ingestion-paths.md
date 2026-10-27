@@ -27,7 +27,10 @@ schema:
 
 - Good: reviewers reproduce the full pipeline with one command, no Docker.
 - Good: the streaming claim is backed by a real test: consumer stopped during
-  produce, then caught up 100,000/100,000 with 0 duplicates and 0 lost.
+  produce, then caught up and accounted for every event.
+  Amendment (Oct 27, 2026): the stream now also carries ~1% dirty rows
+  (300 duplicates, 550 invalid), so "0 duplicates" became "300 duplicates
+  caught and counted": 99,150 clean + 850 rejected = 100,000, 0 lost.
 - Cost: two code paths must stay consistent. Mitigated: both call the same
   `clean_silver` rules, so drift is a bug, not a feature.
 - Known limit: the Spark path needs PySpark + Java, and on Windows also
